@@ -1,7 +1,7 @@
 name: tpns_flutter_plugin
 description: TPNS flutter插件.
 version: 1.0.5
-homepage: https://git.code.tencent.com/tpns/TPNS-Flutter-Plugin.git
+homepage: https://github.com/TencentCloud/TPNS-Flutter-Plugin
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
