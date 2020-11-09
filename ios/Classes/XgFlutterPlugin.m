@@ -120,35 +120,35 @@
 
 /// 集群域名配置（非广州集群需要在startXg之前调用此函数）
 - (void)configureClusterDomainName:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSDictionary *ConfigurationInfo = call.arguments;
-    [[XGPush defaultManager] configureClusterDomainName:ConfigurationInfo[@"domainStr"]];
+    NSDictionary *configurationInfo = call.arguments;
+    [[XGPush defaultManager] configureClusterDomainName:configurationInfo[@"domainStr"]];
 }
 
 
 /// 使用APPID/APPKEY启动信鸽
 - (void)startXg:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSDictionary *ConfigurationInfo = call.arguments;
-    [[XGPush defaultManager] startXGWithAccessID:(uint32_t)[ConfigurationInfo[@"accessId"] integerValue] accessKey:ConfigurationInfo[@"accessKey"] delegate:self];
+    NSDictionary *configurationInfo = call.arguments;
+    [[XGPush defaultManager] startXGWithAccessID:(uint32_t)[configurationInfo[@"accessId"] integerValue] accessKey:configurationInfo[@"accessKey"] delegate:self];
 }
 
 /// 设置Debug
 - (void)setEnableDebug:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSDictionary *ConfigurationInfo = call.arguments;
-    [[XGPush defaultManager] setEnableDebug:[ConfigurationInfo[@"enableDebug"] boolValue]];
+    NSDictionary *configurationInfo = call.arguments;
+    [[XGPush defaultManager] setEnableDebug:[configurationInfo[@"enableDebug"] boolValue]];
 }
 
 /**===================================V1.0.4新增账号标签接口===================================*/
 
 /// 绑定账号
 - (void)setAccount:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSDictionary *ConfigurationInfo = call.arguments;
-    [[XGPushTokenManager defaultTokenManager] updateBindedIdentifiers:@[@{@"account" : ConfigurationInfo[@"account"], @"accountType" : @([self getAccountType:ConfigurationInfo[@"accountType"]])}] bindType:XGPushTokenBindTypeAccount];
+    NSDictionary *configurationInfo = call.arguments;
+    [[XGPushTokenManager defaultTokenManager] updateBindedIdentifiers:@[@{@"account" : configurationInfo[@"account"], @"accountType" : @([self getAccountType:configurationInfo[@"accountType"]])}] bindType:XGPushTokenBindTypeAccount];
 }
 
 /// 删除指定账号
 - (void)deleteAccount:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSDictionary *ConfigurationInfo = call.arguments;
-    [[XGPushTokenManager defaultTokenManager] unbindWithIdentifers:@[@{@"account" : ConfigurationInfo[@"account"], @"accountType" : @([self getAccountType:ConfigurationInfo[@"accountType"]])}] type:XGPushTokenBindTypeAccount];
+    NSDictionary *configurationInfo = call.arguments;
+    [[XGPushTokenManager defaultTokenManager] unbindWithIdentifers:@[@{@"account" : configurationInfo[@"account"], @"accountType" : @([self getAccountType:configurationInfo[@"accountType"]])}] type:XGPushTokenBindTypeAccount];
 }
 
 /// 追加标签
@@ -175,48 +175,48 @@
 
 /// 绑定标签或账号
 - (void)bindWithIdentifier:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSDictionary *ConfigurationInfo = call.arguments;
-    [[XGPushTokenManager defaultTokenManager] bindWithIdentifier:ConfigurationInfo[@"identify"] type:[ConfigurationInfo[@"bindType"] integerValue]];
+    NSDictionary *configurationInfo = call.arguments;
+    [[XGPushTokenManager defaultTokenManager] bindWithIdentifier:configurationInfo[@"identify"] type:[configurationInfo[@"bindType"] integerValue]];
 }
 
 /// 更新标签或账号
 - (void)updateBindIdentifier:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSDictionary *ConfigurationInfo = call.arguments;
-    if ([ConfigurationInfo[@"bindType"] integerValue] == XGPushTokenBindTypeAccount) {
-        [[XGPushTokenManager defaultTokenManager] updateBindedIdentifiers:@[@{@"account" : ConfigurationInfo[@"identify"], @"accountType" : @(0)}] bindType:[ConfigurationInfo[@"bindType"] integerValue]];
-    } else if ([ConfigurationInfo[@"bindType"] integerValue] == XGPushTokenBindTypeTag) {
-        [[XGPushTokenManager defaultTokenManager] updateBindedIdentifiers:@[ConfigurationInfo[@"identify"]] bindType:[ConfigurationInfo[@"bindType"] integerValue]];
+    NSDictionary *configurationInfo = call.arguments;
+    if ([configurationInfo[@"bindType"] integerValue] == XGPushTokenBindTypeAccount) {
+        [[XGPushTokenManager defaultTokenManager] updateBindedIdentifiers:@[@{@"account" : configurationInfo[@"identify"], @"accountType" : @(0)}] bindType:[configurationInfo[@"bindType"] integerValue]];
+    } else if ([configurationInfo[@"bindType"] integerValue] == XGPushTokenBindTypeTag) {
+        [[XGPushTokenManager defaultTokenManager] updateBindedIdentifiers:@[configurationInfo[@"identify"]] bindType:[configurationInfo[@"bindType"] integerValue]];
     }
 }
 
 /// 解绑标签或账号
 - (void)unbindWithIdentifier:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSDictionary *ConfigurationInfo = call.arguments;
-    [[XGPushTokenManager defaultTokenManager] unbindWithIdentifer:ConfigurationInfo[@"identify"] type:[ConfigurationInfo[@"bindType"] integerValue]];
+    NSDictionary *configurationInfo = call.arguments;
+    [[XGPushTokenManager defaultTokenManager] unbindWithIdentifer:configurationInfo[@"identify"] type:[configurationInfo[@"bindType"] integerValue]];
 }
 
 /// 批量绑定标签或账号
 - (void)bindWithIdentifiers:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSDictionary *ConfigurationInfo = call.arguments;
-    [[XGPushTokenManager defaultTokenManager] bindWithIdentifiers:ConfigurationInfo[@"identifys"] type:[ConfigurationInfo[@"bindType"] integerValue]];
+    NSDictionary *configurationInfo = call.arguments;
+    [[XGPushTokenManager defaultTokenManager] bindWithIdentifiers:configurationInfo[@"identifys"] type:[configurationInfo[@"bindType"] integerValue]];
 }
 
 /// 批量更新标签或账号
 - (void)updateBindIdentifiers:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSDictionary *ConfigurationInfo = call.arguments;
-    [[XGPushTokenManager defaultTokenManager] updateBindedIdentifiers:ConfigurationInfo[@"identifys"] bindType:[ConfigurationInfo[@"bindType"] integerValue]];
+    NSDictionary *configurationInfo = call.arguments;
+    [[XGPushTokenManager defaultTokenManager] updateBindedIdentifiers:configurationInfo[@"identifys"] bindType:[configurationInfo[@"bindType"] integerValue]];
 }
 
 /// 批量解绑标签或账号
 - (void)unbindWithIdentifiers:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSDictionary *ConfigurationInfo = call.arguments;
-    [[XGPushTokenManager defaultTokenManager] unbindWithIdentifers:ConfigurationInfo[@"identifys"] type:[ConfigurationInfo[@"bindType"] integerValue]];
+    NSDictionary *configurationInfo = call.arguments;
+    [[XGPushTokenManager defaultTokenManager] unbindWithIdentifers:configurationInfo[@"identifys"] type:[configurationInfo[@"bindType"] integerValue]];
 }
 
 /// 清除所有标签或账号
 - (void)clearAllIdentifier:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSDictionary *ConfigurationInfo = call.arguments;
-    [[XGPushTokenManager defaultTokenManager] clearAllIdentifiers:[ConfigurationInfo[@"bindType"] integerValue]];
+    NSDictionary *configurationInfo = call.arguments;
+    [[XGPushTokenManager defaultTokenManager] clearAllIdentifiers:[configurationInfo[@"bindType"] integerValue]];
 }
 
 /**==========================================================================*/
@@ -224,15 +224,15 @@
 
 /// 同步角标值到TPNS服务器
 - (void)setBadge:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSDictionary *ConfigurationInfo = call.arguments;
-    [[XGPush defaultManager] setBadge:[ConfigurationInfo[@"badgeSum"] integerValue]];
+    NSDictionary *configurationInfo = call.arguments;
+    [[XGPush defaultManager] setBadge:[configurationInfo[@"badgeSum"] integerValue]];
 }
 
 /// 设置应用角标
 - (void)setAppBadge:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSDictionary *ConfigurationInfo = call.arguments;
+    NSDictionary *configurationInfo = call.arguments;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [XGPush defaultManager].xgApplicationBadgeNumber = [ConfigurationInfo[@"badgeSum"] integerValue];
+        [XGPush defaultManager].xgApplicationBadgeNumber = [configurationInfo[@"badgeSum"] integerValue];
     });
 }
 
