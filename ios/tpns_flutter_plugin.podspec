@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'tpns_flutter_plugin'
-  s.version          = '1.0.4'
+  s.version          = '1.0.5'
   s.summary          = 'TPNS'
   s.description      = <<-DESC
 A new flutter plugin project.
