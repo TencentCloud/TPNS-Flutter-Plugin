@@ -44,7 +44,7 @@
   } else if([@"deleteAccount" isEqualToString:call.method]) {
       [self deleteAccount:call result:result];
   } else if([@"cleanAccounts" isEqualToString:call.method]) {
-      [[XGPushTokenManager defaultTokenManager] clearAllIdentifiers:XGPushTokenBindTypeAccount];
+      [[XGPushTokenManager defaultTokenManager] clearAccounts];
   } else if([@"addTags" isEqualToString:call.method]) {
       [self addTags:call result:result];
   } else if([@"setTags" isEqualToString:call.method]) {
@@ -52,7 +52,7 @@
   } else if([@"deleteTags" isEqualToString:call.method]) {
       [self deleteTags:call result:result];
   } else if([@"cleanTags" isEqualToString:call.method]) {
-      [[XGPushTokenManager defaultTokenManager] clearAllIdentifiers:XGPushTokenBindTypeTag];
+      [[XGPushTokenManager defaultTokenManager] clearTags];
   } else if([@"bindWithIdentifier" isEqualToString:call.method]) {
       [self bindWithIdentifier:call result:result];
   } else if([@"updateBindIdentifier" isEqualToString:call.method]) {
@@ -105,16 +105,16 @@
         return XGPushTokenAccountTypeDOUBAN;
     } else if ([typeStr isEqualToString:@"FACEBOOK"]) {
         return XGPushTokenAccountTypeFACEBOOK;
-    } else if ([typeStr isEqualToString:@"TWRITTER"]) {
-        return XGPushTokenAccountTypeTWRITTER;
+    } else if ([typeStr isEqualToString:@"TWITTER"]) {
+        return XGPushTokenAccountTypeTWITTER;
     } else if ([typeStr isEqualToString:@"GOOGLE"]) {
         return XGPushTokenAccountTypeGOOGLE;
     } else if ([typeStr isEqualToString:@"BAIDU"]) {
         return XGPushTokenAccountTypeBAIDU;
     } else if ([typeStr isEqualToString:@"JINGDONG"]) {
         return XGPushTokenAccountTypeJINGDONG;
-    } else if ([typeStr isEqualToString:@"LINKIN"]) {
-        return XGPushTokenAccountTypeLINKIN;
+    } else if ([typeStr isEqualToString:@"LINKEDIN"]) {
+        return XGPushTokenAccountTypeLINKEDIN;
     } else return XGPushTokenAccountTypeUNKNOWN;
 }
 
@@ -142,31 +142,32 @@
 /// 绑定账号
 - (void)setAccount:(FlutterMethodCall*)call result:(FlutterResult)result {
     NSDictionary *configurationInfo = call.arguments;
-    [[XGPushTokenManager defaultTokenManager] updateBindedIdentifiers:@[@{@"account" : configurationInfo[@"account"], @"accountType" : @([self getAccountType:configurationInfo[@"accountType"]])}] bindType:XGPushTokenBindTypeAccount];
+    [[XGPushTokenManager defaultTokenManager] upsertAccountsByDict:@{ @([self getAccountType:configurationInfo[@"accountType"]]):configurationInfo[@"account"] }];
 }
 
 /// 删除指定账号
 - (void)deleteAccount:(FlutterMethodCall*)call result:(FlutterResult)result {
     NSDictionary *configurationInfo = call.arguments;
-    [[XGPushTokenManager defaultTokenManager] unbindWithIdentifers:@[@{@"account" : configurationInfo[@"account"], @"accountType" : @([self getAccountType:configurationInfo[@"accountType"]])}] type:XGPushTokenBindTypeAccount];
+    NSSet *accountsKeys = [[NSSet alloc] initWithObjects:@([self getAccountType:configurationInfo[@"accountType"]]), nil];
+    [[XGPushTokenManager defaultTokenManager] delAccountsByKeys:accountsKeys];
 }
 
 /// 追加标签
 - (void)addTags:(FlutterMethodCall*)call result:(FlutterResult)result {
     NSArray *tags = call.arguments;
-    [[XGPushTokenManager defaultTokenManager] bindWithIdentifiers:tags type:XGPushTokenBindTypeTag];
+    [[XGPushTokenManager defaultTokenManager] appendTags:tags];
 }
 
 /// 覆盖标签(清除所有标签再追加)
 - (void)setTags:(FlutterMethodCall*)call result:(FlutterResult)result {
     NSArray *tags = call.arguments;
-    [[XGPushTokenManager defaultTokenManager] updateBindedIdentifiers:tags bindType:XGPushTokenBindTypeTag];
+    [[XGPushTokenManager defaultTokenManager] clearAndAppendTags:tags];
 }
 
 /// 删除指定标签
 - (void)deleteTags:(FlutterMethodCall*)call result:(FlutterResult)result {
     NSArray *tags = call.arguments;
-    [[XGPushTokenManager defaultTokenManager] unbindWithIdentifers:tags type:XGPushTokenBindTypeTag];
+    [[XGPushTokenManager defaultTokenManager] delTags:tags];
 }
 
 /**===============================V1.0.4请使用以上账号标签接口===============================*/
@@ -321,6 +322,42 @@
 
 #pragma mark - XGPushTokenManagerDelegate
 
+/**===============================V1.0.7新增===============================*/
+
+- (void)xgPushDidUpsertAccountsByDict:(NSDictionary *)accountsDict error:(NSError *)error {
+    NSString *resultStr = error == nil ? @"设置账号成功" : [NSString stringWithFormat:@"设置账号失败，error:%@", error.description];
+    [_channel invokeMethod:@"xgPushDidBindWithIdentifier" arguments:resultStr];
+}
+- (void)xgPushDidDelAccountsByKeys:(NSSet<NSNumber *> *)accountsKeys error:(NSError *)error {
+    NSString *resultStr = error == nil ? @"删除账号成功" : [NSString stringWithFormat:@"删除账号失败，error:%@", error.description];
+    [_channel invokeMethod:@"xgPushDidUnbindWithIdentifier" arguments:resultStr];
+}
+
+- (void)xgPushDidClearAccountsError:(NSError *)error {
+    NSString *resultStr = error == nil ? @"清除账号成功" : [NSString stringWithFormat:@"清除账号失败，error:%@", error.description];
+    [_channel invokeMethod:@"xgPushDidClearAllIdentifiers" arguments:resultStr];
+}
+
+- (void)xgPushDidAppendTags:(NSArray<NSString *> *)tags error:(NSError *)error {
+    NSString *resultStr = error == nil ? @"设置标签成功" : [NSString stringWithFormat:@"设置标签失败，error:%@", error.description];
+    [_channel invokeMethod:@"xgPushDidBindWithIdentifier" arguments:resultStr];
+}
+- (void)xgPushDidDelTags:(NSArray<NSString *> *)tags error:(NSError *)error {
+    NSString *resultStr = error == nil ? @"删除标签成功" : [NSString stringWithFormat:@"删除标签失败，error:%@", error.description];
+    [_channel invokeMethod:@"xgPushDidUnbindWithIdentifier" arguments:resultStr];
+}
+- (void)xgPushDidClearAndAppendTags:(NSArray<NSString *> *)tags error:(NSError *)error {
+    NSString *resultStr = error == nil ? @"更新标签成功" : [NSString stringWithFormat:@"更新标签失败，error:%@", error.description];
+    [_channel invokeMethod:@"xgPushDidUpdatedBindedIdentifier" arguments:resultStr];
+}
+
+- (void)xgPushDidClearTagsError:(NSError *)error {
+    NSString *resultStr = error == nil ? @"清除标签成功" : [NSString stringWithFormat:@"清除标签失败，error:%@", error.description];
+    [_channel invokeMethod:@"xgPushDidClearAllIdentifiers" arguments:resultStr];
+}
+
+/**=======================================================================*/
+
 - (void)xgPushDidBindWithIdentifier:(NSString *)identifier type:(XGPushTokenBindType)type error:(NSError *)error {
     NSString *argumentDescribe = type == XGPushTokenBindTypeAccount ? @"绑定账号" : @"绑定标签";
     NSString *resultStr = error == nil ? @"成功" : [NSString stringWithFormat:@"失败，error:%@", error.description];
@@ -357,5 +394,16 @@
     [_channel invokeMethod:@"xgPushDidClearAllIdentifiers" arguments:[NSString stringWithFormat:@"%@%@", argumentDescribe, resultStr]];
 }
 
+#pragma mark - AppDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSDictionary *remoteNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (remoteNotification) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self->_channel invokeMethod:@"xgPushClickAction" arguments:remoteNotification];
+        });
+    }
+    return YES;
+}
 
 @end

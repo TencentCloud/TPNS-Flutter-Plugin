@@ -33,7 +33,7 @@
       /// JINGDONG 京东
       /// IMEI 安卓手机标识，安卓专用，iOS默认为UNKNOWN类型
 ```dart
-      enum AccountType { UNKNOWN, CUSTOM, IDFA, PHONE_NUMBER, WX_OPEN_ID, QQ_OPEN_ID, EMAIL, SINA_WEIBO, ALIPAY, TAOBAO, DOUBAN, FACEBOOK, TWRITTER, GOOGLE, BAIDU, JINGDONG, LINKIN, IMEI }
+      enum AccountType { UNKNOWN, CUSTOM, IDFA, PHONE_NUMBER, WX_OPEN_ID, QQ_OPEN_ID, EMAIL, SINA_WEIBO, ALIPAY, TAOBAO, DOUBAN, FACEBOOK, TWITTER, GOOGLE, BAIDU, JINGDONG, LINKEDIN, IMEI }
 ```
 
 #### 5. 设置账号
@@ -98,6 +98,12 @@
 
 
 ## 安卓端 XgAndroidApi 接口说明
+
+> 说明：XgAndroidApi 为针对安卓独立接口的内部再次封装，可以通过 `XgFlutterPlugin.xgApi` 直接访问，例如：
+> ```dart
+>     // 调用示例：开启厂商其他推送接口
+>     XgFlutterPlugin.xgApi.enableOtherPush()
+> ```
 
 #### 1  开启其他推送
 ```dart

@@ -222,6 +222,12 @@ class XgAndroidApi {
     return otherPushToken;
   }
 
+  /// 获取厂商推送品牌
+  Future<String> getOtherPushType() async {
+    final String otherPushType = await _channel.invokeMethod('getOtherPushType');
+    return otherPushType;
+  }
+
   /*----------------小米厂商通道集成-----------*/
 
   /// 设置小米推送的APP_ID

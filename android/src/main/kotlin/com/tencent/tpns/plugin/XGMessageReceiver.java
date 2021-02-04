@@ -66,6 +66,16 @@ public class XGMessageReceiver extends XGPushBaseReceiver {
     }
 
     @Override
+    public void onSetAttributeResult(Context context, int i, String s) {
+
+    }
+
+    @Override
+    public void onDeleteAttributeResult(Context context, int i, String s) {
+
+    }
+
+    @Override
     public void onTextMessage(Context context, XGPushTextMessage message) {
         String content = message.getContent();
         String customContent = message.getCustomContent();

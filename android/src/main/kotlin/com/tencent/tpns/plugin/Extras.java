@@ -43,6 +43,7 @@ public interface Extras {
     String FOR_FLUTTER_METHOD_ENABLE_OTHER_PUSH = "enableOtherPush";
     String FOR_FLUTTER_METHOD_ENABLE_OTHER_PUSH2 = "enableOtherPush2";
     String FOR_FLUTTER_METHOD_GET_OTHER_PUSH_TOKEN = "getOtherPushToken";
+    String FOR_FLUTTER_METHOD_GET_OTHER_PUSH_TYPE = "getOtherPushType";
     String FOR_FLUTTER_METHOD_SET_MI_PUSH_APP_ID = "setMiPushAppId";
     String FOR_FLUTTER_METHOD_SET_MI_PUSH_APP_KEY = "setMiPushAppKey";
     String FOR_FLUTTER_METHOD_SET_MZ_PUSH_ID = "setMzPushAppId";

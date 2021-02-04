@@ -89,6 +89,7 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
             Extras.FOR_FLUTTER_METHOD_ENABLE_OTHER_PUSH -> enableOtherPush(p0, p1)
             Extras.FOR_FLUTTER_METHOD_ENABLE_OTHER_PUSH2 -> enableOtherPush2(p0, p1)
             Extras.FOR_FLUTTER_METHOD_GET_OTHER_PUSH_TOKEN -> getOtherPushToken(p0, p1)
+            Extras.FOR_FLUTTER_METHOD_GET_OTHER_PUSH_TYPE -> getOtherPushType(p0, p1)
             Extras.FOR_FLUTTER_METHOD_SET_MI_PUSH_APP_ID -> setMiPushAppId(p0, p1)
             Extras.FOR_FLUTTER_METHOD_SET_MI_PUSH_APP_KEY -> setMiPushAppKey(p0, p1)
             Extras.FOR_FLUTTER_METHOD_SET_MZ_PUSH_ID -> setMzPushAppId(p0, p1)
@@ -367,7 +368,7 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
     fun getAccountType(accountType: String): Int {
         when (accountType) {
             "UNKNOWN" -> return XGPushManager.AccountType.UNKNOWN.getValue()
-            "CUSTOM" -> return XGPushManager.AccountType.COSTOM.getValue()
+            "CUSTOM" -> return XGPushManager.AccountType.CUSTOM.getValue()
 //            "IDFA" -> return XGPushManager.AccountType.IDFA.getValue()
             "PHONE_NUMBER" -> return XGPushManager.AccountType.PHONE_NUMBER.getValue()
             "WX_OPEN_ID" -> return XGPushManager.AccountType.WX_OPEN_ID.getValue()
@@ -378,11 +379,11 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
             "TAOBAO" -> return XGPushManager.AccountType.TAOBAO.getValue()
             "DOUBAN" -> return XGPushManager.AccountType.DOUBAN.getValue()
             "FACEBOOK" -> return XGPushManager.AccountType.FACEBOOK.getValue()
-            "TWRITTER" -> return XGPushManager.AccountType.TWRITTER.getValue()
+            "TWITTER" -> return XGPushManager.AccountType.TWITTER.getValue()
             "GOOGLE" -> return XGPushManager.AccountType.GOOGLE.getValue()
             "BAIDU" -> return XGPushManager.AccountType.BAIDU.getValue()
             "JINGDONG" -> return XGPushManager.AccountType.JINGDONG.getValue()
-            "LINKIN" -> return XGPushManager.AccountType.LINKIN.getValue()
+            "LINKEDIN" -> return XGPushManager.AccountType.LINKEDIN.getValue()
             "IMEI" -> return XGPushManager.AccountType.IMEI.getValue()
             else -> return XGPushManager.AccountType.UNKNOWN.getValue()
         }
@@ -398,7 +399,7 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
     fun bindAccount(call: MethodCall, result: MethodChannel.Result?) {
         val map = call.arguments<Map<String, String>>()
         val account = map[Extras.ACCOUNT]
-        val context = if (mPluginBinding == null) registrar.context() else mPluginBinding.applicationContext
+        val context = if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext
         var accountType: String = (map[Extras.ACCOUNT_TYPE]) ?: "UNKNOWN"
         Log.i(TAG, "调用信鸽SDK-->bindAccount()----account=${account}, accountType=${accountType}")
         XGPushManager.bindAccount(context, account, getAccountType(accountType), object : XGIOperateCallback {
@@ -426,7 +427,7 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
     fun appendAccount(call: MethodCall, result: MethodChannel.Result?) {
         val map = call.arguments<Map<String, String>>()
         val account = map[Extras.ACCOUNT]
-        val context = if (mPluginBinding == null) registrar.context() else mPluginBinding.applicationContext
+        val context = if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext
         var accountType: String = (map[Extras.ACCOUNT_TYPE]) ?: "UNKNOWN"
         Log.i(TAG, "调用信鸽SDK-->appendAccount()----account=${account}, accountType=${accountType}")
         XGPushManager.appendAccount(context, account, getAccountType(accountType), object : XGIOperateCallback {
@@ -454,7 +455,7 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
     fun delAccount(call: MethodCall, result: MethodChannel.Result?) {
         val map = call.arguments<Map<String, String>>()
         val account = map[Extras.ACCOUNT]
-        val context = if (mPluginBinding == null) registrar.context() else mPluginBinding.applicationContext
+        val context = if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext
         var accountType: String = (map[Extras.ACCOUNT_TYPE]) ?: "UNKNOWN"
         Log.i(TAG, "调用信鸽SDK-->delAccount()----account=${account}, accountType=${accountType}")
         XGPushManager.delAccount(context, account, getAccountType(accountType), object : XGIOperateCallback {
@@ -512,12 +513,21 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
     }
 
     /**
-     * 开启厂商推送 token  XGPushManager.registerPush 成功后
+     * 获取厂商推送 token  XGPushManager.registerPush 成功后
      */
     fun getOtherPushToken(call: MethodCall?, result: MethodChannel.Result) {
         val otherPushToken: String = (XGPushConfig.getOtherPushToken(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext))?:""
         Log.i(TAG, "调用信鸽SDK-->getOtherPushToken()---otherPushToken=${otherPushToken}")
         result.success(otherPushToken)
+    }
+
+    /**
+     * 获取厂商推送品牌  XGPushManager.registerPush 成功后
+     */
+    fun getOtherPushType(call: MethodCall?, result: MethodChannel.Result) {
+        val otherPushType: String = (XGPushConfig.getOtherPushType(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext))?:""
+        Log.i(TAG, "调用信鸽SDK-->getOtherPushType()---otherPushType=${otherPushType}")
+        result.success(otherPushType)
     }
 
 

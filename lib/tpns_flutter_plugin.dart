@@ -36,11 +36,11 @@ enum AccountType {
   TAOBAO,
   DOUBAN,
   FACEBOOK,
-  TWRITTER,
+  TWITTER,
   GOOGLE,
   BAIDU,
   JINGDONG,
-  LINKIN,
+  LINKEDIN,
   IMEI
 }
 
@@ -107,6 +107,17 @@ class XgFlutterPlugin {
       final String otherPushToken = await _channel.invokeMethod(
           'getOtherPushToken');
       return otherPushToken;
+    }
+  }
+
+  /// 获取安卓厂商品牌，当前仅对安卓有效
+  static Future<String> get otherPushType async {
+    if (Platform.isIOS) {
+
+    } else {
+      final String otherPushType = await _channel.invokeMethod(
+          'getOtherPushType');
+      return otherPushType;
     }
   }
 

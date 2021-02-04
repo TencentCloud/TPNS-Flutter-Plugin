@@ -1,9 +1,9 @@
 PODS:
   - Flutter (1.0.0)
-  - TPNS-iOS (1.2.7.1)
+  - TPNS-iOS (1.2.9.0)
   - tpns_flutter_plugin (1.0.4):
     - Flutter
-    - TPNS-iOS (~> 1.2.7.2)
+    - TPNS-iOS (~> 1.2.9.0)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)

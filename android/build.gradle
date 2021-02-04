@@ -43,6 +43,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //添加以下依赖
     implementation 'com.tencent.jg:jg:1.1'
-    implementation 'com.tencent.tpns:tpns:1.2.0.2-release'
+    implementation 'com.tencent.tpns:tpns:1.2.2.4-release'
     compileOnly files('libs/flutter.jar')
 }

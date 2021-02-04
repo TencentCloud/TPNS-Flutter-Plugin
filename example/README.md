@@ -7,7 +7,7 @@
         tpns_flutter_plugin:
           git:
             url: https://github.com/TencentCloud/TPNS-Flutter-Plugin
-            ref: V1.0.5
+            ref: V1.0.7
 ```
 
 
