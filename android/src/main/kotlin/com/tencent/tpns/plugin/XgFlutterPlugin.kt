@@ -90,6 +90,8 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
             Extras.FOR_FLUTTER_METHOD_ENABLE_OTHER_PUSH2 -> enableOtherPush2(p0, p1)
             Extras.FOR_FLUTTER_METHOD_GET_OTHER_PUSH_TOKEN -> getOtherPushToken(p0, p1)
             Extras.FOR_FLUTTER_METHOD_GET_OTHER_PUSH_TYPE -> getOtherPushType(p0, p1)
+            Extras.FOR_FLUTTER_METHOD_SET_BADGE_NUM -> setBadgeNum(p0, p1)
+            Extras.FOR_FLUTTER_METHOD_RESET_BADGE_NUM -> resetBadgeNum(p0, p1)
             Extras.FOR_FLUTTER_METHOD_SET_MI_PUSH_APP_ID -> setMiPushAppId(p0, p1)
             Extras.FOR_FLUTTER_METHOD_SET_MI_PUSH_APP_KEY -> setMiPushAppKey(p0, p1)
             Extras.FOR_FLUTTER_METHOD_SET_MZ_PUSH_ID -> setMzPushAppId(p0, p1)
@@ -528,6 +530,18 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
         val otherPushType: String = (XGPushConfig.getOtherPushType(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext))?:""
         Log.i(TAG, "调用信鸽SDK-->getOtherPushType()---otherPushType=${otherPushType}")
         result.success(otherPushType)
+    }
+
+    fun setBadgeNum(call: MethodCall, result: MethodChannel.Result?) {
+        val map = call.arguments<Map<String, Int>>()
+        val badgeNum = map[Extras.BADGE_NUM] as Int
+        Log.i(TAG, "调用信鸽SDK-->setBadgeNum()-----badgeNum=${badgeNum}")
+        XGPushConfig.setBadgeNum(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext, badgeNum)
+    }
+
+    fun resetBadgeNum(call: MethodCall, result: MethodChannel.Result?) {
+        Log.i(TAG, "调用信鸽SDK-->resetBadgeNum()")
+        XGPushConfig.resetBadgeNum(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext)
     }
 
 

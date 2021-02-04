@@ -228,6 +228,20 @@ class XgAndroidApi {
     return otherPushType;
   }
 
+  /*-------------------角标控制---------------*/
+
+  /// 接设置应用角标，
+  /// 当前支持华为、OPPO、vivo，其中 OPPO 需另外向厂商申请角标展示权限
+  void setBadgeNum({int badgeNum}) {
+    _channel.invokeMethod('setBadgeNum', {'badgeNum': badgeNum});
+  }
+
+  /// 设置手机应用角标归0，建议在应用打开时将角标清0，
+  /// 当前支持华为、OPPO、vivo，其中 OPPO 需另外向厂商申请角标展示权限
+  void resetBadgeNum() {
+    _channel.invokeMethod('resetBadgeNum');
+  }
+
   /*----------------小米厂商通道集成-----------*/
 
   /// 设置小米推送的APP_ID
