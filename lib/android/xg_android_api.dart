@@ -242,6 +242,12 @@ class XgAndroidApi {
     _channel.invokeMethod('resetBadgeNum');
   }
 
+
+  /// 清空当前应用在通知栏的通知
+  void cancelAllNotification() {
+    _channel.invokeMethod('cancelAllNotification');
+  }
+
   /*----------------小米厂商通道集成-----------*/
 
   /// 设置小米推送的APP_ID

@@ -92,6 +92,7 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
             Extras.FOR_FLUTTER_METHOD_GET_OTHER_PUSH_TYPE -> getOtherPushType(p0, p1)
             Extras.FOR_FLUTTER_METHOD_SET_BADGE_NUM -> setBadgeNum(p0, p1)
             Extras.FOR_FLUTTER_METHOD_RESET_BADGE_NUM -> resetBadgeNum(p0, p1)
+            Extras.FOR_FLUTTER_METHOD_CANCEL_ALL_NOTIFICATION -> cancelAllNotification(p0, p1);
             Extras.FOR_FLUTTER_METHOD_SET_MI_PUSH_APP_ID -> setMiPushAppId(p0, p1)
             Extras.FOR_FLUTTER_METHOD_SET_MI_PUSH_APP_KEY -> setMiPushAppKey(p0, p1)
             Extras.FOR_FLUTTER_METHOD_SET_MZ_PUSH_ID -> setMzPushAppId(p0, p1)
@@ -542,6 +543,11 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
     fun resetBadgeNum(call: MethodCall, result: MethodChannel.Result?) {
         Log.i(TAG, "调用信鸽SDK-->resetBadgeNum()")
         XGPushConfig.resetBadgeNum(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext)
+    }
+
+    fun cancelAllNotification(call: MethodCall, result: MethodChannel.Result?) {
+        Log.i(TAG, "调用信鸽SDK-->cancelAllNotification()")
+        XGPushManager.cancelAllNotifaction(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext)
     }
 
 
