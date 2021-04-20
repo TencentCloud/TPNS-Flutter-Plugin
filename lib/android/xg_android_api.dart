@@ -112,6 +112,12 @@ class XgAndroidApi {
         'setHeartbeatIntervalMs', {'heartBeatIntervalMs': interval});
   }
 
+  /// 配置是否关闭拉起其他 App
+  /// enable 是否关闭 默认不是
+  void enablePullUpOtherApp({bool enable}) {
+    _channel.invokeMethod('enablePullUpOtherApp', {'enable': enable});
+  }
+
   ///反注册信鸽推送
   /// 当用户已退出或 App 被关闭，不再需要接收推送时，可以取消注册 App，即反注册。
   ///（一旦设备反注册，直到这个设备重新注册成功期间内，下发的消息该设备都无法收到）

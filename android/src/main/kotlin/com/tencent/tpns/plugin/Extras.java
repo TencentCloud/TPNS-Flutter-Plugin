@@ -45,6 +45,7 @@ public interface Extras {
     String FOR_FLUTTER_METHOD_ENABLE_OTHER_PUSH2 = "enableOtherPush2";
     String FOR_FLUTTER_METHOD_GET_OTHER_PUSH_TOKEN = "getOtherPushToken";
     String FOR_FLUTTER_METHOD_GET_OTHER_PUSH_TYPE = "getOtherPushType";
+    String FOR_FLUTTER_METHOD_ENABLE_PULL_UP_OTHER_APP = "enablePullUpOtherApp";
     String FOR_FLUTTER_METHOD_SET_BADGE_NUM = "setBadgeNum";
     String FOR_FLUTTER_METHOD_RESET_BADGE_NUM = "resetBadgeNum";
     String FOR_FLUTTER_METHOD_CANCEL_ALL_NOTIFICATION = "cancelAllNotification";

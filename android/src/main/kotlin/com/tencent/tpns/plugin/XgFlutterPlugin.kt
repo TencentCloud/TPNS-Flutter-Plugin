@@ -90,6 +90,7 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
             Extras.FOR_FLUTTER_METHOD_ENABLE_OTHER_PUSH2 -> enableOtherPush2(p0, p1)
             Extras.FOR_FLUTTER_METHOD_GET_OTHER_PUSH_TOKEN -> getOtherPushToken(p0, p1)
             Extras.FOR_FLUTTER_METHOD_GET_OTHER_PUSH_TYPE -> getOtherPushType(p0, p1)
+            Extras.FOR_FLUTTER_METHOD_ENABLE_PULL_UP_OTHER_APP -> enablePullUpOtherApp(p0, p1)
             Extras.FOR_FLUTTER_METHOD_SET_BADGE_NUM -> setBadgeNum(p0, p1)
             Extras.FOR_FLUTTER_METHOD_RESET_BADGE_NUM -> resetBadgeNum(p0, p1)
             Extras.FOR_FLUTTER_METHOD_CANCEL_ALL_NOTIFICATION -> cancelAllNotification(p0, p1);
@@ -531,6 +532,13 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
         val otherPushType: String = (XGPushConfig.getOtherPushType(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext))?:""
         Log.i(TAG, "调用信鸽SDK-->getOtherPushType()---otherPushType=${otherPushType}")
         result.success(otherPushType)
+    }
+
+    fun enablePullUpOtherApp(call: MethodCall, result: MethodChannel.Result) {
+        val map = call.arguments<HashMap<String, Any>>()
+        val enable = map["enable"] as Boolean
+        Log.i(TAG, "调用信鸽SDK-->enablePullUpOtherApp()")
+        XGPushConfig.enablePullUpOtherApp(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext, enable)
     }
 
     fun setBadgeNum(call: MethodCall, result: MethodChannel.Result?) {
