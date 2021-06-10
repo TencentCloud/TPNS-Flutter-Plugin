@@ -10,24 +10,24 @@ List<List<String>> sectionList = [
   ['注册推送服务', '注销推送服务', '设备推送标识', '上报当前角标数', 'SDK 版本']
 ];
 
-class homeTest extends StatelessWidget {
+class HomeTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('TPNS Demo'),
       ),
-      body: homeTestBody(),
+      body: HomeTestBody(),
     );
   }
 }
 
-class homeTestBody extends StatefulWidget {
+class HomeTestBody extends StatefulWidget {
   @override
-  _homeTestBodyState createState() => _homeTestBodyState();
+  HomeTestBodyState createState() => HomeTestBodyState();
 }
 
-class _homeTestBodyState extends State<homeTestBody> {
+class HomeTestBodyState extends State<HomeTestBody> {
   String inputStr = "flutter";
 
   // Get row count.

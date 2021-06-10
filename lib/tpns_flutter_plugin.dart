@@ -55,37 +55,37 @@ class XgFlutterPlugin {
   static XgAndroidApi xgApi = new XgAndroidApi(_channel);
 
   /// 注册推送服务失败回调
-  EventHandler _onRegisteredDeviceToken;
+  EventHandler? _onRegisteredDeviceToken;
 
   /// 注册推送服务成功回调
-  EventHandler _onRegisteredDone;
+  EventHandler? _onRegisteredDone;
 
   /// 注销推送服务回调
-  EventHandler _unRegistered;
+  EventHandler? _unRegistered;
 
   /// 前台收到通知消息回调
-  EventHandlerMap _onReceiveNotificationResponse;
+  EventHandlerMap? _onReceiveNotificationResponse;
 
   /// 收到透传、静默消息回调
-  EventHandlerMap _onReceiveMessage;
+  EventHandlerMap? _onReceiveMessage;
 
   /// 通知点击回调
-  EventHandlerMap _xgPushClickAction;
+  EventHandlerMap? _xgPushClickAction;
 
   /// 设置角标回调仅iOS
-  EventHandler _xgPushDidSetBadge;
+  EventHandler? _xgPushDidSetBadge;
 
   /// 绑定账号和标签回调
-  EventHandler _xgPushDidBindWithIdentifier;
+  EventHandler? _xgPushDidBindWithIdentifier;
 
   /// 解绑账号和标签回调
-  EventHandler _xgPushDidUnbindWithIdentifier;
+  EventHandler? _xgPushDidUnbindWithIdentifier;
 
   /// 更新账号和标签回调
   EventHandler _xgPushDidUpdatedBindedIdentifier;
 
   /// 清除所有账号和标签回调
-  EventHandler _xgPushDidClearAllIdentifiers;
+  EventHandler? _xgPushDidClearAllIdentifiers;
 
   /// 获取sdk版本号
   static Future<String> get xgSdkVersion async {
@@ -100,9 +100,9 @@ class XgFlutterPlugin {
   }
 
   /// 获取安卓厂商 token，当前仅对安卓有效
-  static Future<String> get otherPushToken async {
+  static Future<String?> get otherPushToken async {
     if (Platform.isIOS) {
-      
+
     } else {
       final String otherPushToken = await _channel.invokeMethod(
           'getOtherPushToken');
@@ -111,7 +111,7 @@ class XgFlutterPlugin {
   }
 
   /// 获取安卓厂商品牌，当前仅对安卓有效
-  static Future<String> get otherPushType async {
+  static Future<String?> get otherPushType async {
     if (Platform.isIOS) {
 
     } else {
@@ -263,17 +263,15 @@ class XgFlutterPlugin {
 
   /// 绑定账号或标签
   void bindWithIdentifier({
-    String identify,
-    XGBindType bindType,
+    required String identify,
+    required XGBindType bindType,
   }) {
     if (Platform.isIOS) {
       _channel.invokeMethod('bindWithIdentifier',
           {'identify': identify, 'bindType': bindType.index});
     } else {
       if (bindType.index == XGBindType.tag.index) {
-        List identifys = List();
-        identifys.add(identify);
-        xgApi.addXgTags(tagNames: identifys);
+        xgApi.addXgTags(tagNames: [identify]);
       } else if (bindType.index == XGBindType.account.index) {
         xgApi.appendAccount(account: identify);
       }
@@ -282,8 +280,8 @@ class XgFlutterPlugin {
 
   /// 更新账号或标签
   void updateBindIdentifier({
-    String identify,
-    XGBindType bindType,
+    required String identify,
+    required XGBindType bindType,
   }) {
     if (Platform.isIOS) {
       _channel.invokeMethod('updateBindIdentifier',
@@ -299,8 +297,8 @@ class XgFlutterPlugin {
 
   /// 解绑账号或标签
   void unbindWithIdentifier({
-    String identify,
-    XGBindType bindType,
+    required String identify,
+    required XGBindType bindType,
   }) {
     if (Platform.isIOS) {
       _channel.invokeMethod('unbindWithIdentifier',
@@ -319,8 +317,8 @@ class XgFlutterPlugin {
   /// ios 对于标签操作，List类型为字符串数组(标签字符串不允许有空格或者是tab字符) [identifyStr]
   /// android List类型为字符串数组(标签字符串不允许有空格或者是tab字符) [identifyStr]
   void bindWithIdentifiers({
-    List identifys,
-    XGBindType bindType,
+    required List identifys,
+    required XGBindType bindType,
   }) {
     if (Platform.isIOS) {
       _channel.invokeMethod('bindWithIdentifiers',
@@ -337,8 +335,8 @@ class XgFlutterPlugin {
   /// ios 对于标签操作，List类型为字符串数组(标签字符串不允许有空格或者是tab字符) [identifyStr]
   /// android List类型为字符串数组(标签字符串不允许有空格或者是tab字符) [identifyStr]
   void updateBindIdentifiers({
-    List identifys,
-    XGBindType bindType,
+    required List identifys,
+    required XGBindType bindType,
   }) {
     if (Platform.isIOS) {
       _channel.invokeMethod('updateBindIdentifiers',
@@ -355,8 +353,8 @@ class XgFlutterPlugin {
   /// ios 对于标签操作，List类型为字符串数组(标签字符串不允许有空格或者是tab字符) [identifyStr]
   /// android List类型为字符串数组(标签字符串不允许有空格或者是tab字符) [identifyStr]
   void unbindWithIdentifiers({
-    List identifys,
-    XGBindType bindType,
+    required List identifys,
+    required XGBindType bindType,
   }) {
     if (Platform.isIOS) {
       _channel.invokeMethod('unbindWithIdentifiers',
@@ -387,17 +385,17 @@ class XgFlutterPlugin {
 /* ======信鸽callback====== */
 
   void addEventHandler({
-    EventHandler onRegisteredDeviceToken,
-    EventHandler onRegisteredDone,
-    EventHandler unRegistered,
-    EventHandlerMap onReceiveNotificationResponse,
-    EventHandlerMap onReceiveMessage,
-    EventHandler xgPushDidSetBadge,
-    EventHandler xgPushDidBindWithIdentifier,
-    EventHandler xgPushDidUnbindWithIdentifier,
-    EventHandler xgPushDidUpdatedBindedIdentifier,
-    EventHandler xgPushDidClearAllIdentifiers,
-    EventHandlerMap xgPushClickAction,
+    EventHandler? onRegisteredDeviceToken,
+    EventHandler? onRegisteredDone,
+    EventHandler? unRegistered,
+    EventHandlerMap? onReceiveNotificationResponse,
+    EventHandlerMap? onReceiveMessage,
+    EventHandler? xgPushDidSetBadge,
+    EventHandler? xgPushDidBindWithIdentifier,
+    EventHandler? xgPushDidUnbindWithIdentifier,
+    EventHandler? xgPushDidUpdatedBindedIdentifier,
+    EventHandler? xgPushDidClearAllIdentifiers,
+    EventHandlerMap? xgPushClickAction,
   }) {
     _onRegisteredDeviceToken = onRegisteredDeviceToken;
     _onRegisteredDone = onRegisteredDone;
@@ -413,31 +411,31 @@ class XgFlutterPlugin {
     _channel.setMethodCallHandler(_handleMethod);
   }
 
-  Future<Null> _handleMethod(MethodCall call) async {
+  Future<dynamic> _handleMethod(MethodCall call) async {
     switch (call.method) {
       case "onRegisteredDeviceToken":
-        return _onRegisteredDeviceToken(call.arguments);
+        return _onRegisteredDeviceToken!(call.arguments);
       case "onRegisteredDone":
-        return _onRegisteredDone(call.arguments);
+        return _onRegisteredDone!(call.arguments);
       case "unRegistered":
-        return _unRegistered(call.arguments);
+        return _unRegistered!(call.arguments);
       case "onReceiveNotificationResponse":
-        return _onReceiveNotificationResponse(
+        return _onReceiveNotificationResponse!(
             call.arguments.cast<String, dynamic>());
       case "onReceiveMessage":
-        return _onReceiveMessage(call.arguments.cast<String, dynamic>());
+        return _onReceiveMessage!(call.arguments.cast<String, dynamic>());
       case "xgPushDidSetBadge":
-        return _xgPushDidSetBadge(call.arguments);
+        return _xgPushDidSetBadge!(call.arguments);
       case "xgPushDidBindWithIdentifier":
-        return _xgPushDidBindWithIdentifier(call.arguments);
+        return _xgPushDidBindWithIdentifier!(call.arguments);
       case "xgPushDidUnbindWithIdentifier":
-        return _xgPushDidUnbindWithIdentifier(call.arguments);
+        return _xgPushDidUnbindWithIdentifier!(call.arguments);
       case "xgPushDidUpdatedBindedIdentifier":
-        return _xgPushDidUpdatedBindedIdentifier(call.arguments);
+        return _xgPushDidUpdatedBindedIdentifier!(call.arguments);
       case "xgPushDidClearAllIdentifiers":
-        return _xgPushDidClearAllIdentifiers(call.arguments);
+        return _xgPushDidClearAllIdentifiers!(call.arguments);
       case "xgPushClickAction":
-        return _xgPushClickAction(call.arguments.cast<String, dynamic>());
+        return _xgPushClickAction!(call.arguments.cast<String, dynamic>());
       default:
         throw new UnsupportedError("Unrecongnized Event");
     }

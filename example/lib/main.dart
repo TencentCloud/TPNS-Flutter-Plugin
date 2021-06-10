@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:tpns_flutter_plugin/tpns_flutter_plugin.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'ios/homeTest.dart';
+import 'package:tpns_flutter_plugin/tpns_flutter_plugin.dart';
 
 void main() => runApp(new MaterialApp(
       home: new MyApp(),
@@ -15,6 +15,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+  final XgFlutterPlugin tpush = new XgFlutterPlugin();
+
   @override
   void initState() {
     super.initState();
@@ -29,10 +32,10 @@ class _MyAppState extends State<MyApp> {
     if (!mounted) return;
 
     /// 开启DEBUG
-    XgFlutterPlugin().setEnableDebug(true);
+    tpush.setEnableDebug(true);
 
     /// 添加回调事件
-    XgFlutterPlugin().addEventHandler(
+    tpush.addEventHandler(
       onRegisteredDeviceToken: (String msg) async {
         print("flutter onRegisteredDeviceToken: $msg");
       },
@@ -54,7 +57,7 @@ class _MyAppState extends State<MyApp> {
         print("flutter xgPushDidSetBadge: $msg");
 
         /// 在此可设置应用角标
-        /// XgFlutterPlugin().setAppBadge(0);
+        /// tpush.setAppBadge(0);
         _showAlert(msg);
       },
       xgPushDidBindWithIdentifier: (String msg) async {
@@ -83,10 +86,10 @@ class _MyAppState extends State<MyApp> {
     /// 香港：tpns.hk.tencent.com
     /// 新加坡：tpns.sgp.tencent.com
     /// 上海：tpns.sh.tencent.com
-    // XgFlutterPlugin().configureClusterDomainName("tpns.hk.tencent.com");
+    // tpush.configureClusterDomainName("tpns.hk.tencent.com");
 
     /// 启动TPNS服务
-    XgFlutterPlugin().startXg("1600007893", "IX4BGYYG8L4L");
+    tpush.startXg("1600007893", "IX4BGYYG8L4L");
   }
 
   void _showAlert(String title) {
@@ -105,6 +108,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return homeTest();
+    return HomeTest();
   }
 }

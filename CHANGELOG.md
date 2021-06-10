@@ -1,3 +1,7 @@
+## V1.1.0
+
+Support null safety
+
 ## V1.0.7
 
 Use TPNS iOS SDK 1.2.9.0
