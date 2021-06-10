@@ -82,7 +82,7 @@ class XgFlutterPlugin {
   EventHandler? _xgPushDidUnbindWithIdentifier;
 
   /// 更新账号和标签回调
-  EventHandler _xgPushDidUpdatedBindedIdentifier;
+  EventHandler? _xgPushDidUpdatedBindedIdentifier;
 
   /// 清除所有账号和标签回调
   EventHandler? _xgPushDidClearAllIdentifiers;
