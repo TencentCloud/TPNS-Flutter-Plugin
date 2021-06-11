@@ -7,11 +7,12 @@ Use TPNS iOS SDK 1.3.1.1
 
 Use TPNS iOS SDK 1.2.9.0
 Use TPNS Android SDK 1.2.2.4
+Add badge configuration api for Android
 
 ## V1.0.6
 
 * Fix api setAccount() not compatible with old version flutter binder
-* Add Api getOtherPushType for Android
+* Add api getOtherPushType for Android
 
 ## V1.0.5
 

@@ -110,6 +110,12 @@ class XgAndroidApi {
         'setHeartbeatIntervalMs', {'heartBeatIntervalMs': interval});
   }
 
+  /// 配置是否关闭拉起其他 App
+  /// enable 是否关闭 默认不是
+  void enablePullUpOtherApp({bool? enable}) {
+    _channel?.invokeMethod('enablePullUpOtherApp', {'enable': enable});
+  }
+
   ///反注册信鸽推送
   /// 当用户已退出或 App 被关闭，不再需要接收推送时，可以取消注册 App，即反注册。
   ///（一旦设备反注册，直到这个设备重新注册成功期间内，下发的消息该设备都无法收到）
@@ -224,6 +230,26 @@ class XgAndroidApi {
   Future<String> getOtherPushType() async {
     final String otherPushType = await _channel?.invokeMethod('getOtherPushType');
     return otherPushType;
+  }
+
+  /*-------------------角标控制---------------*/
+
+  /// 接设置应用角标，
+  /// 当前支持华为、OPPO、vivo，其中 OPPO 需另外向厂商申请角标展示权限
+  void setBadgeNum({int? badgeNum}) {
+    _channel?.invokeMethod('setBadgeNum', {'badgeNum': badgeNum});
+  }
+
+  /// 设置手机应用角标归0，建议在应用打开时将角标清0，
+  /// 当前支持华为、OPPO、vivo，其中 OPPO 需另外向厂商申请角标展示权限
+  void resetBadgeNum() {
+    _channel?.invokeMethod('resetBadgeNum');
+  }
+
+
+  /// 清空当前应用在通知栏的通知
+  void cancelAllNotification() {
+    _channel?.invokeMethod('cancelAllNotification');
   }
 
   /*----------------小米厂商通道集成-----------*/
