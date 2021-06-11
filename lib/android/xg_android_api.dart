@@ -112,8 +112,8 @@ class XgAndroidApi {
 
   /// 配置是否关闭拉起其他 App
   /// enable 是否关闭 默认不是
-  void enablePullUpOtherApp({bool enable}) {
-    _channel.invokeMethod('enablePullUpOtherApp', {'enable': enable});
+  void enablePullUpOtherApp({bool? enable}) {
+    _channel?.invokeMethod('enablePullUpOtherApp', {'enable': enable});
   }
 
   ///反注册信鸽推送
@@ -236,20 +236,20 @@ class XgAndroidApi {
 
   /// 接设置应用角标，
   /// 当前支持华为、OPPO、vivo，其中 OPPO 需另外向厂商申请角标展示权限
-  void setBadgeNum({int badgeNum}) {
-    _channel.invokeMethod('setBadgeNum', {'badgeNum': badgeNum});
+  void setBadgeNum({int? badgeNum}) {
+    _channel?.invokeMethod('setBadgeNum', {'badgeNum': badgeNum});
   }
 
   /// 设置手机应用角标归0，建议在应用打开时将角标清0，
   /// 当前支持华为、OPPO、vivo，其中 OPPO 需另外向厂商申请角标展示权限
   void resetBadgeNum() {
-    _channel.invokeMethod('resetBadgeNum');
+    _channel?.invokeMethod('resetBadgeNum');
   }
 
 
   /// 清空当前应用在通知栏的通知
   void cancelAllNotification() {
-    _channel.invokeMethod('cancelAllNotification');
+    _channel?.invokeMethod('cancelAllNotification');
   }
 
   /*----------------小米厂商通道集成-----------*/
