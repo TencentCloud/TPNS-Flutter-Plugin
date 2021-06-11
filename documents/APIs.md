@@ -18,7 +18,7 @@
 ```
 
 #### 4. 账号类型枚举
-      /// UNKNOWN 未知类型，单账号绑定默认使用
+      /// UNKNOWN 默认类型，当前只支持此类型的推送
       /// CUSTOM 自定义
       /// IDFA 广告唯一标识，iOS 专用，安卓侧默认为UNKNOWN类型
       /// PHONE_NUMBER 手机号码

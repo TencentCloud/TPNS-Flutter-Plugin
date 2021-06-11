@@ -6,7 +6,25 @@
 #import <UserNotifications/UserNotifications.h>
 #endif
 
-
+typedef NS_ENUM(NSUInteger, XGPushTokenAccountType) {
+    XGPushTokenAccountTypeUNKNOWN = (0),         // 未知类型，单账号绑定默认使用
+    XGPushTokenAccountTypeCUSTOM = (1),          // 自定义
+    XGPushTokenAccountTypeIDFA = (1001),         // 广告唯一标识 IDFA
+    XGPushTokenAccountTypePHONE_NUMBER = (1002), // 手机号码
+    XGPushTokenAccountTypeWX_OPEN_ID = (1003),   // 微信 OPENID
+    XGPushTokenAccountTypeQQ_OPEN_ID = (1004),   // QQ OPENID
+    XGPushTokenAccountTypeEMAIL = (1005),        // 邮箱
+    XGPushTokenAccountTypeSINA_WEIBO = (1006),   // 新浪微博
+    XGPushTokenAccountTypeALIPAY = (1007),       // 支付宝
+    XGPushTokenAccountTypeTAOBAO = (1008),       // 淘宝
+    XGPushTokenAccountTypeDOUBAN = (1009),       // 豆瓣
+    XGPushTokenAccountTypeFACEBOOK = (1010),     // FACEBOOK
+    XGPushTokenAccountTypeTWITTER = (1011),      // TWITTER
+    XGPushTokenAccountTypeGOOGLE = (1012),       // GOOGLE
+    XGPushTokenAccountTypeBAIDU = (1013),        // 百度
+    XGPushTokenAccountTypeJINGDONG = (1014),     // 京东
+    XGPushTokenAccountTypeLINKEDIN = (1015)      // LINKEDIN
+};
 
 @interface  XgFlutterPlugin()<XGPushDelegate, XGPushTokenManagerDelegate>
 
