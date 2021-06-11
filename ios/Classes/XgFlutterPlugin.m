@@ -33,6 +33,8 @@
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
   if ([@"xgSdkVersion" isEqualToString:call.method]) {
     result([[XGPush defaultManager] sdkVersion]);
+  } else if([@"getOtherPushToken" isEqualToString:call.method]) {
+      result([[XGPushTokenManager defaultTokenManager] deviceTokenString]);
   } else if([@"xgToken" isEqualToString:call.method]) {
       result([[XGPushTokenManager defaultTokenManager] xgTokenString]);
   } else if([@"startXg" isEqualToString:call.method]) {
@@ -174,6 +176,8 @@
 
 /**===================================V1.0.4废弃账号标签接口===================================*/
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 /// 绑定标签或账号
 - (void)bindWithIdentifier:(FlutterMethodCall*)call result:(FlutterResult)result {
     NSDictionary *configurationInfo = call.arguments;
@@ -219,6 +223,8 @@
     NSDictionary *configurationInfo = call.arguments;
     [[XGPushTokenManager defaultTokenManager] clearAllIdentifiers:[configurationInfo[@"bindType"] integerValue]];
 }
+
+#pragma clang diagnostic pop
 
 /**==========================================================================*/
 
@@ -358,6 +364,8 @@
 
 /**=======================================================================*/
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (void)xgPushDidBindWithIdentifier:(NSString *)identifier type:(XGPushTokenBindType)type error:(NSError *)error {
     NSString *argumentDescribe = type == XGPushTokenBindTypeAccount ? @"绑定账号" : @"绑定标签";
     NSString *resultStr = error == nil ? @"成功" : [NSString stringWithFormat:@"失败，error:%@", error.description];
@@ -393,6 +401,7 @@
     NSString *resultStr = error == nil ? @"成功" : [NSString stringWithFormat:@"失败，error:%@", error.description];
     [_channel invokeMethod:@"xgPushDidClearAllIdentifiers" arguments:[NSString stringWithFormat:@"%@%@", argumentDescribe, resultStr]];
 }
+#pragma clang diagnostic pop
 
 #pragma mark - AppDelegate
 

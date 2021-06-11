@@ -107,8 +107,8 @@ class _FlutterTableViewState extends State<FlutterTableView> {
   ////////////////////////////////////////////////////////////////////
   SectionHeaderModel currentHeaderModel;
   int totalItemCount = 0;
-  List<SectionHeaderModel> sectionHeaderList = List();
-  List<int> sectionTotalWidgetCountList = List();
+  List<SectionHeaderModel> sectionHeaderList = [];
+  List<int> sectionTotalWidgetCountList = [];
   ScrollController scrollController;
   ListView listView;
   bool insideSetStateFlag = false;
@@ -292,7 +292,6 @@ class _FlutterTableViewState extends State<FlutterTableView> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
 
     if (this.widget.controller == null) {

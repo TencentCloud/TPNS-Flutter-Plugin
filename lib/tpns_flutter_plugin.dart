@@ -99,15 +99,10 @@ class XgFlutterPlugin {
     return xgToken;
   }
 
-  /// 获取安卓厂商 token，当前仅对安卓有效
+  /// 获取厂商Token，区别于tpns token
   static Future<String?> get otherPushToken async {
-    if (Platform.isIOS) {
-
-    } else {
-      final String otherPushToken = await _channel.invokeMethod(
-          'getOtherPushToken');
-      return otherPushToken;
-    }
+    final String otherPushToken = await _channel.invokeMethod('getOtherPushToken');
+    return otherPushToken;
   }
 
   /// 获取安卓厂商品牌，当前仅对安卓有效
@@ -380,7 +375,7 @@ class XgFlutterPlugin {
     }
   }
 
-/*******************************************请不要再使用以上账号和标签接口****************************************************/
+//*******************************************请不要再使用以上账号和标签接口****************************************************/
 
 /* ======信鸽callback====== */
 

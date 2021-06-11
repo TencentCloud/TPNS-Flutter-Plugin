@@ -28,6 +28,7 @@ class HomeTestBody extends StatefulWidget {
 }
 
 class HomeTestBodyState extends State<HomeTestBody> {
+  final XgFlutterPlugin tpush = new XgFlutterPlugin();
   String inputStr = "flutter";
 
   // Get row count.
@@ -95,31 +96,31 @@ class HomeTestBodyState extends State<HomeTestBody> {
   void _doAction(int section, int row) {
     if (section == 0) {
       if (row == 0) {
-        XgFlutterPlugin().setAccount(inputStr, AccountType.UNKNOWN);
+        tpush.setAccount(inputStr, AccountType.UNKNOWN);
       } else if (row == 1) {
-        XgFlutterPlugin().deleteAccount(inputStr, AccountType.UNKNOWN);
+        tpush.deleteAccount(inputStr, AccountType.UNKNOWN);
       } else if (row == 2) {
-        XgFlutterPlugin().cleanAccounts();
+        tpush.cleanAccounts();
       }
     } else if (section == 1) {
       if (row == 0) {
-        XgFlutterPlugin().addTags([inputStr]);
+        tpush.addTags([inputStr]);
       } else if (row == 1) {
-        XgFlutterPlugin().deleteTags([inputStr]);
+        tpush.deleteTags([inputStr]);
       } else if (row == 2) {
-        XgFlutterPlugin().setTags([inputStr]);
+        tpush.setTags([inputStr]);
       } else if (row == 3) {
-        XgFlutterPlugin().cleanTags();
+        tpush.cleanTags();
       }
     } else if (section == 2) {
       if (row == 0) {
-        XgFlutterPlugin().startXg("1600007893", "IX4BGYYG8L4L");
+        tpush.startXg("1600007893", "IX4BGYYG8L4L");
       } else if (row == 1) {
-        XgFlutterPlugin().stopXg();
+        tpush.stopXg();
       } else if (row == 2) {
         getXgToken();
       } else if (row == 3) {
-        XgFlutterPlugin().setBadge(int.parse(inputStr));
+        tpush.setBadge(int.parse(inputStr));
       } else if (row == 4) {
         getXgSdkVersion();
       }

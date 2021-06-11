@@ -1,6 +1,7 @@
 ## V1.1.0
 
 Support null safety
+Use TPNS iOS SDK 1.3.1.1
 
 ## V1.0.7
 

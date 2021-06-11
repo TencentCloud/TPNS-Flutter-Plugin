@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'native_event_handler.dart';
 
 class XgAndroidApi {
-  final String flutter_log = "| XGPUSH | Flutter | ";
+  final String flutterLog = "| XGPUSH | Flutter | ";
   static MethodChannel? _channel;
   NativeEventHandler? _eventHandler;
 

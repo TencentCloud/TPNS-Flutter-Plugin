@@ -15,7 +15,7 @@ A new flutter plugin project.
   s.source           = { :git => "https://github.com/TencentCloud/TPNS-Flutter-Plugin", :branch => "V1.1.0" }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.dependency 'TPNS-iOS', '1.2.9.0'
+  s.dependency 'TPNS-iOS', '1.3.1.1'
   s.platform = :ios, '8.0'
   s.static_framework = true
 end
