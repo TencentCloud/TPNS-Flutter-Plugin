@@ -1,13 +1,13 @@
 ## V1.1.0
 
-Support null safety
-Use TPNS iOS SDK 1.3.1.1
+* Support null safety
+* Use TPNS iOS SDK 1.3.1.1
 
 ## V1.0.7
 
-Use TPNS iOS SDK 1.2.9.0
-Use TPNS Android SDK 1.2.2.4
-Add badge configuration api for Android
+* Use TPNS iOS SDK 1.2.9.0
+* Use TPNS Android SDK 1.2.2.4
+* Add badge configuration api for Android
 
 ## V1.0.6
 
