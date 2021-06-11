@@ -1,5 +1,6 @@
-name: xg_flutter_plugin_example
-description: Demonstrates how to use the xg_flutter_plugin plugin.
+name: tpns_flutter_plugin_example
+version: 1.0.0+1
+description: Demonstrates how to use the tpns_flutter_plugin plugin.
 publish_to: 'none'
 
 environment:
