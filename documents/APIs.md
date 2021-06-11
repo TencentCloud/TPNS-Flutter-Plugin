@@ -145,6 +145,15 @@
      setOppoPushAppKey({String appKey});
 ```
 
+#### 9  清空当前应用在通知栏的通知
+```dart
+     cancelAllNotification();
+```
+
+#### 10 配置是否关闭拉起其他 App；填入 false 为不拉起，默认为 true
+```dart
+     enablePullUpOtherApp({bool enable})
+```
 
 ##  安卓端回调接口说明
 
@@ -152,37 +161,37 @@
 ```dart
     _onReceiveMessage 数据类型 Map<String, Object> para:
         key:
-            title:标题
-            content：消息文本
-            customMessage：自定义 key-value
-            pushChannel：推送通道
+            title: 标题
+            content: 消息文本
+            customMessage: 自定义 key-value
+            pushChannel: 推送通道
 ```
 
 #### 2 收到通知消息回调
 ```dart
     _onReceiveNotificationResponse    数据类型 Map<String, Object> para = new HashMap<>()
-         key：
-             title:标题
-             content：消息文本
-             customMessage：自定义 key-value
-             pushChannel：推送通道
-             notifactionId：通知ID
-             msgId：消息ID
-             activity：活动
-             notifactionActionType：通知类型
+         key: 
+             title: 标题
+             content: 消息文本
+             customMessage: 自定义 key-value
+             pushChannel: 推送通道
+             notifactionId: 通知ID
+             msgId: 推送任务ID
+             activity: 推送点击跳转目标
+             notifactionActionType: 推送点击跳转方式
 ```
 
 #### 3 通知点击回调
 ```dart
     _xgPushClickAction   数据类型 Map<String, Object> para:
-        kay：
+        key: 
             title:标题
-            content：消息文本
-            customMessage：自定义 key-value
-            msgId：消息ID
-            notifactionActionType：通知ID
-            activityName：活动名称
-            actionType：类型
+            content: 消息文本
+            customMessage: 自定义 key-value
+            msgId: 推送任务ID
+            activityName: 推送点击跳转目标
+            notifactionActionType: 推送点击跳转方式
+            actionType: 推送被点击或清除，0：消息被点击，2：消息被清除
 ```
 
 #### 4 注册完成回调
