@@ -22,8 +22,12 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   plugin:
-    androidPackage: com.tencent.tpns.plugin
-    pluginClass: XgFlutterPlugin
+    platforms:
+      android:
+        package: com.tencent.tpns.plugin
+        pluginClass: XgFlutterPlugin
+      ios:
+        pluginClass: XgFlutterPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
