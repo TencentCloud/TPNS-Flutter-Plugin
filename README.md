@@ -1,7 +1,7 @@
 # tpns_flutter_plugin
 
 ## 安装
-在工程 pubspec.yaml 中加入 dependencies
+- 在工程 pubspec.yaml 中加入 dependencies，在命令行中运行：flutter pub get进行安装
 ```yaml
       dependencies:
         tpns_flutter_plugin:
@@ -41,6 +41,7 @@
 
 ###  iOS
 
+- 执行flutter pub get安装好插件后进入iOS文件目录（cd ios）执行：pod install安装依赖库
 - 在 xcode8 之后需要点开推送选项： TARGETS -> Capabilities -> Push Notification 设为 on 状态
 
 ```dart
