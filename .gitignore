@@ -2,10 +2,8 @@ zq.xcuserdatad/
 !contents.xcworkspacedata
 .DS_Store
 xcuserdata/
-xcshareddata/
 !xcschemes/
 !xcbaselines/
 .editorconfig
 .idea
 build/
-Podfile.lock
