@@ -94,6 +94,7 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
             Extras.FOR_FLUTTER_METHOD_SET_BADGE_NUM -> setBadgeNum(p0, p1)
             Extras.FOR_FLUTTER_METHOD_RESET_BADGE_NUM -> resetBadgeNum(p0, p1)
             Extras.FOR_FLUTTER_METHOD_CANCEL_ALL_NOTIFICATION -> cancelAllNotification(p0, p1);
+            Extras.FOR_FLUTTER_METHOD_CREATE_NOTIFICATION_CHANNEL -> createNotificationChannel(p0, p1);
             Extras.FOR_FLUTTER_METHOD_SET_MI_PUSH_APP_ID -> setMiPushAppId(p0, p1)
             Extras.FOR_FLUTTER_METHOD_SET_MI_PUSH_APP_KEY -> setMiPushAppKey(p0, p1)
             Extras.FOR_FLUTTER_METHOD_SET_MZ_PUSH_ID -> setMzPushAppId(p0, p1)
@@ -556,6 +557,15 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
     fun cancelAllNotification(call: MethodCall, result: MethodChannel.Result?) {
         Log.i(TAG, "调用信鸽SDK-->cancelAllNotification()")
         XGPushManager.cancelAllNotifaction(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext)
+    }
+
+    fun createNotificationChannel(call: MethodCall, result: MethodChannel.Result?) {
+        val map = call.arguments<Map<String, Int>>()
+        val channelId = map[Extras.CHANNEL_ID] as String
+        val channelName = map[Extras.CHANNEL_NAME] as String
+        Log.i(TAG, "调用信鸽SDK-->createNotificationChannel(${channelId}, ${channelName})")
+        XGPushManager.createNotificationChannel(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext, 
+            channelId, channelName, true, true, true, null)
     }
 
 

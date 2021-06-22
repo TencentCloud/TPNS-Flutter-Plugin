@@ -252,6 +252,11 @@ class XgAndroidApi {
     _channel?.invokeMethod('cancelAllNotification');
   }
 
+  /// 创建通知渠道
+  void createNotificationChannel({String? channelId, String? channelName}) {
+    _channel?.invokeMethod('createNotificationChannel', {'channelId': channelId, 'channelName': channelName});
+  }
+
   /*----------------小米厂商通道集成-----------*/
 
   /// 设置小米推送的APP_ID
