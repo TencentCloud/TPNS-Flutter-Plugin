@@ -3,6 +3,7 @@
 #### 1. 注册推送服务
       /// iOS需传accessId和accessKey
       /// android不需要传参数
+      /// android接入厂商通道时，请先参考 [厂商通道接入说明](vendor.md) 配置各厂商通道参数信息后，再调用此注册方法。
 ```dart
       void startXg(String accessId, String accessKey);
 ```
