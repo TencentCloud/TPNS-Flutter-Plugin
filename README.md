@@ -97,6 +97,15 @@
 [点击查看](./documents/vendor.md)
 
 
+
+### 启用推送
+      /// iOS 需传 accessId 和 accessKey
+      /// android 不需要传参数
+      /// android 接入厂商通道时，请在此注册方法前调用各厂商通道参数配置接口
+```dart
+      void startXg(String accessId, String accessKey);
+```
+
 ### APIs
 
 **说明** : 提供TPNS的所有业务接口。
