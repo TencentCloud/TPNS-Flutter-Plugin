@@ -33,6 +33,9 @@ typedef NS_ENUM(NSUInteger, XGPushTokenAccountType) {
 
 @implementation XgFlutterPlugin
 
+bool withInAppAlert = true;
+
+
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
   FlutterMethodChannel* channel = [FlutterMethodChannel
       methodChannelWithName:@"tpns_flutter_plugin"
@@ -148,6 +151,7 @@ typedef NS_ENUM(NSUInteger, XGPushTokenAccountType) {
 /// 使用APPID/APPKEY启动信鸽
 - (void)startXg:(FlutterMethodCall*)call result:(FlutterResult)result {
     NSDictionary *configurationInfo = call.arguments;
+    withInAppAlert = [configurationInfo[@"withInAppAlert"] boolValue];
     [[XGPush defaultManager] startXGWithAccessID:(uint32_t)[configurationInfo[@"accessId"] integerValue] accessKey:configurationInfo[@"accessKey"] delegate:self];
 }
 
@@ -298,7 +302,11 @@ typedef NS_ENUM(NSUInteger, XGPushTokenAccountType) {
     NSDictionary *notificationDic = nil;
     if ([notification isKindOfClass:[UNNotification class]]) {
         notificationDic = ((UNNotification *)notification).request.content.userInfo;
-        completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
+        if(withInAppAlert) {
+            completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
+        }else {
+            completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound);
+        }
     } else if ([notification isKindOfClass:[NSDictionary class]]) {
         notificationDic = notification;
         completionHandler(UIBackgroundFetchResultNewData);
