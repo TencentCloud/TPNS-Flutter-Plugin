@@ -1,3 +1,8 @@
+## V1.1.2
+
+* iOS start add optional notification online display
+* Use TPNS iOS SDK 1.3.3.0
+
 ## V1.1.1_oc
 
 * plugin delete swift file 

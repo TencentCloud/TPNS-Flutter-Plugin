@@ -99,11 +99,11 @@
 
 
 ### 启用推送
-      /// iOS 需传 accessId 和 accessKey
+      /// iOS 需传 accessId 和 accessKey，iOS前台收到通知不希望展示时可将withInAppAlert参数置为false
       /// android 不需要传参数
       /// android 接入厂商通道时，请在此注册方法前调用各厂商通道参数配置接口
 ```dart
-      void startXg(String accessId, String accessKey);
+      void startXg(String accessId, String accessKey, {bool withInAppAlert = true});
 ```
 
 ### APIs

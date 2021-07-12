@@ -127,12 +127,16 @@ class XgFlutterPlugin {
 /* ======信鸽注册反注册和debug接口====== */
 
   /// 注册推送服务
-  /// iOS需传accessId和accessKey
+  /// iOS需传accessId和accessKey; withInAppAlert为可选参数，默认为true。
   /// android不需要传参数
-  void startXg(String accessId, String accessKey) {
+  void startXg(String accessId, String accessKey,
+      {bool withInAppAlert = true}) {
     if (Platform.isIOS) {
-      _channel.invokeMethod('startXg',
-          <String, dynamic>{'accessId': accessId, 'accessKey': accessKey});
+      _channel.invokeMethod('startXg', <String, dynamic>{
+        'accessId': accessId,
+        'accessKey': accessKey,
+        'withInAppAlert': withInAppAlert,
+      });
     } else {
       xgApi.regPush();
     }

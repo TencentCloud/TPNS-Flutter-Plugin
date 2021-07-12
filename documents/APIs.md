@@ -1,11 +1,11 @@
 ## 通用 API 接口说明
 
 #### 1. 注册推送服务
-      /// iOS需传accessId和accessKey
+      /// iOS 需传 accessId 和 accessKey，iOS前台收到通知不希望展示时可将withInAppAlert参数置为false
       /// android不需要传参数
       /// android接入厂商通道时，请先参考 [厂商通道接入说明](vendor.md) 配置各厂商通道参数信息后，再调用此注册方法。
 ```dart
-      void startXg(String accessId, String accessKey);
+      void startXg(String accessId, String accessKey, {bool withInAppAlert = true});
 ```
 
 #### 2. 注销推送服务
