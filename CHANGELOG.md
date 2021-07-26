@@ -1,3 +1,8 @@
+## V1.1.3
+
+* update TPNS Android SDK 1.2.3.1
+* remove redundant manifest configuration in android
+
 ## V1.1.2
 
 * iOS start add optional notification online display
