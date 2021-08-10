@@ -94,14 +94,14 @@ class XgFlutterPlugin {
   }
 
   /// 获取信鸽token
-  static Future<String> get xgToken async {
-    final String xgToken = await _channel.invokeMethod('xgToken');
+  static Future<String?> get xgToken async {
+    final String? xgToken = await _channel.invokeMethod('xgToken');
     return xgToken;
   }
 
   /// 获取厂商Token，区别于tpns token
   static Future<String?> get otherPushToken async {
-    final String otherPushToken =
+    final String? otherPushToken =
         await _channel.invokeMethod('getOtherPushToken');
     return otherPushToken;
   }
@@ -110,7 +110,7 @@ class XgFlutterPlugin {
   static Future<String?> get otherPushType async {
     if (Platform.isIOS) {
     } else {
-      final String otherPushType =
+      final String? otherPushType =
           await _channel.invokeMethod('getOtherPushType');
       return otherPushType;
     }
