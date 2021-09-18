@@ -88,29 +88,28 @@ class XgFlutterPlugin {
   EventHandler? _xgPushDidClearAllIdentifiers;
 
   /// 获取sdk版本号
-  static Future<String> get xgSdkVersion async {
-    final String version = await _channel.invokeMethod('xgSdkVersion');
+  static Future<String?> get xgSdkVersion async {
+    final String? version = await _channel.invokeMethod('xgSdkVersion');
     return version;
   }
 
   /// 获取信鸽token
-  static Future<String> get xgToken async {
-    final String xgToken = await _channel.invokeMethod('xgToken');
+  static Future<String?> get xgToken async {
+    final String? xgToken = await _channel.invokeMethod('xgToken');
     return xgToken;
   }
 
   /// 获取厂商Token，区别于tpns token
   static Future<String?> get otherPushToken async {
-    final String otherPushToken =
+    final String? otherPushToken =
         await _channel.invokeMethod('getOtherPushToken');
     return otherPushToken;
   }
 
   /// 获取安卓厂商品牌，当前仅对安卓有效
   static Future<String?> get otherPushType async {
-    if (Platform.isIOS) {
-    } else {
-      final String otherPushType =
+    if (Platform.isAndroid) {
+      final String? otherPushType =
           await _channel.invokeMethod('getOtherPushType');
       return otherPushType;
     }

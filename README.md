@@ -7,7 +7,7 @@
         tpns_flutter_plugin:
           git:
             url: https://github.com/TencentCloud/TPNS-Flutter-Plugin
-            ref: V1.1.3
+            ref: V1.1.4
 ```
 
 - 注意：由于TPNS插件名变更xg_flutter_plugin->tpns_flutter_plugin，更新插件时V1.0.4及以上版本请使用tpns_flutter_plugin
