@@ -88,8 +88,8 @@ class XgFlutterPlugin {
   EventHandler? _xgPushDidClearAllIdentifiers;
 
   /// 获取sdk版本号
-  static Future<String> get xgSdkVersion async {
-    final String version = await _channel.invokeMethod('xgSdkVersion');
+  static Future<String?> get xgSdkVersion async {
+    final String? version = await _channel.invokeMethod('xgSdkVersion');
     return version;
   }
 
@@ -108,8 +108,7 @@ class XgFlutterPlugin {
 
   /// 获取安卓厂商品牌，当前仅对安卓有效
   static Future<String?> get otherPushType async {
-    if (Platform.isIOS) {
-    } else {
+    if (Platform.isAndroid) {
       final String? otherPushType =
           await _channel.invokeMethod('getOtherPushType');
       return otherPushType;
