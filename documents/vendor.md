@@ -53,8 +53,8 @@ dependencies {
 在调用 `regPush()`注册信鸽推送之前调用启用三方通道接口以开启厂商推送：
 
 ```dart
-      XgAndroidApi.enableOtherPush();
-      XgAndroidApi.regPush();
+      XgFlutterPlugin.xgApi.enableOtherPush();
+      XgFlutterPlugin.xgApi.regPush();
 ```
 
 #### 1.3 代码混淆
@@ -84,12 +84,12 @@ dependencies {
 
 ```dart
       // 设置小米 AppID 和 AppKey。
-      XgAndroidApi.setMiPushAppId(appId:"APP_ID");
-      XgAndroidApi.setMiPushAppKey(appKey: "APPKEY");
+      XgFlutterPlugin.xgApi.setMiPushAppId(appId:"APP_ID");
+      XgFlutterPlugin.xgApi.setMiPushAppKey(appKey: "APPKEY");
       
       // 打开第三方推送并注册
-      XgAndroidApi.enableOtherPush();
-      XgAndroidApi.regPush();
+      XgFlutterPlugin.xgApi.enableOtherPush();
+      XgFlutterPlugin.xgApi.regPush();
 ```
 #### 2.3 代码混淆
 
@@ -111,12 +111,12 @@ dependencies {
 
 ```dart
       /// 设置魅族 AppID 和 AppKey
-      XgAndroidApi.setMzPushAppId(appId:"APP_ID");
-      XgAndroidApi.setMzPushAppKey(appKey: "APPKEY");
+      XgFlutterPlugin.xgApi.setMzPushAppId(appId:"APP_ID");
+      XgFlutterPlugin.xgApi.setMzPushAppKey(appKey: "APPKEY");
       
       /// 打开第三方推送
-      XgAndroidApi.enableOtherPush();
-      XgAndroidApi.regPush();
+      XgFlutterPlugin.xgApi.enableOtherPush();
+      XgFlutterPlugin.xgApi.regPush();
 ```
 
 #### 3.3 代码混淆
@@ -152,8 +152,8 @@ dependencies {
 
 ```dart
       /// 打开第三方推送
-      XgAndroidApi.enableOtherPush();
-      XgAndroidApi.regPush();
+      XgFlutterPlugin.xgApi.enableOtherPush();
+      XgFlutterPlugin.xgApi.regPush();
 ```
 #### 4.3代码混淆
 
@@ -173,24 +173,18 @@ dependencies {
 ```
       implementation 'com.tencent.tpns:oppo:[VERSION]-release'  // OPPO 推送 [VERSION] 为当前SDK版本号,版本号可在SDK下载页查看
 ```
-#### 5.2 请求通知栏权限（可选），在调用腾讯移动推送`XgAndroidApi.regPush()`前，调用以下代码：
+#### 5.2 开启推送
 
 ```dart
-      /// TPNS-OPPO 依赖包版本在 1.1.5.1 及以上支持，系统 ColorOS 5.0 以上有效
-      XgAndroidApi.enableOppoNotification();
-```
-#### 5.3 开启推送
-
-```
       /// 设置OPPO AppKey 和 AppSecret
-      XgAndroidApi.setOppoPushAppId(appId:"Oppo的AppKey");
-      XgAndroidApi.setOppoPushAppKey(appKey: "Oppo的AppSecret");
+      XgFlutterPlugin.xgApi.setOppoPushAppId(appId:"Oppo的AppKey");
+      XgFlutterPlugin.xgApi.setOppoPushAppKey(appKey: "Oppo的AppSecret");
       
       /// 打开第三方推送
-      XgAndroidApi.enableOtherPush();
-      XgAndroidApi.regPush();
+      XgFlutterPlugin.xgApi.enableOtherPush();
+      XgFlutterPlugin.xgApi.regPush();
 ```
-#### 5.4 代码混淆
+#### 5.3 代码混淆
 
 ```
       -keep public class * extends android.app.Service
@@ -223,8 +217,8 @@ dependencies {
 
 ```dart
       /// 打开第三方推送
-      XgAndroidApi.enableOtherPush();
-      XgAndroidApi.regPush();
+      XgFlutterPlugin.xgApi.enableOtherPush();
+      XgFlutterPlugin.xgApi.regPush();
 ```
 
 ## 厂商通道注册失败排查指南
