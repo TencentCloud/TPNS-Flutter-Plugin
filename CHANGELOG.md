@@ -1,3 +1,8 @@
+## V1.1.5
+
+* Use TPNS Android SDK 1.2.7.1
+* Add Api for attributes operation
+
 ## V1.1.4
 
 *  Use TPNS iOS SDK 1.3.4.1
