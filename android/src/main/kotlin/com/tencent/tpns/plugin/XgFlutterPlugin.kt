@@ -538,13 +538,13 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
             override fun onSuccess(p0: Any?, p1: Int) {
                 Log.i(TAG, "delAttributes successful")
                 val para = "delAttributes successful"
-                toFlutterMethod(Extras.XG_PUSH_DID_BIND_WITH_IDENENTIFIER, para)
+                toFlutterMethod(Extras.XG_PUSH_DID_UNBIND_WITH_IDENENTIFIER, para)
             }
 
             override fun onFail(p0: Any?, p1: Int, p2: String?) {
                 Log.i(TAG, "delAttributes failure")
                 val para = "delAttributes failure----->code=${p1}--->message=${p2}"
-                toFlutterMethod(Extras.XG_PUSH_DID_BIND_WITH_IDENENTIFIER, para)
+                toFlutterMethod(Extras.XG_PUSH_DID_UNBIND_WITH_IDENENTIFIER, para)
             }
         })
     }
@@ -561,18 +561,16 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
             override fun onSuccess(p0: Any?, p1: Int) {
                 Log.i(TAG, "clearAndAppendAttributes successful")
                 val para = "clearAndAppendAttributes successful"
-                toFlutterMethod(Extras.XG_PUSH_DID_BIND_WITH_IDENENTIFIER, para)
+                toFlutterMethod(Extras.XG_PUSH_DID_UPDATED_WITH_IDENENTIFIER, para)
             }
 
             override fun onFail(p0: Any?, p1: Int, p2: String?) {
                 Log.i(TAG, "clearAndAppendAttributes failure")
                 val para = "clearAndAppendAttributes failure----->code=${p1}--->message=${p2}"
-                toFlutterMethod(Extras.XG_PUSH_DID_BIND_WITH_IDENENTIFIER, para)
+                toFlutterMethod(Extras.XG_PUSH_DID_UPDATED_WITH_IDENENTIFIER, para)
             }
         })
     }
-
-
 
     /**
      * 清除全部用户属性
@@ -584,13 +582,13 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
             override fun onSuccess(p0: Any?, p1: Int) {
                 Log.i(TAG, "clearAttributes successful")
                 val para = "clearAttributes successful"
-                toFlutterMethod(Extras.XG_PUSH_DID_BIND_WITH_IDENENTIFIER, para)
+                toFlutterMethod(Extras.XG_PUSH_DID_CLEAR_WITH_IDENENTIFIER, para)
             }
 
             override fun onFail(p0: Any?, p1: Int, p2: String?) {
                 Log.i(TAG, "clearAttributes failure")
                 val para = "clearAttributes failure----->code=${p1}--->message=${p2}"
-                toFlutterMethod(Extras.XG_PUSH_DID_BIND_WITH_IDENENTIFIER, para)
+                toFlutterMethod(Extras.XG_PUSH_DID_CLEAR_WITH_IDENENTIFIER, para)
             }
         })
     }
