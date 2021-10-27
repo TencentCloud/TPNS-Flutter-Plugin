@@ -86,6 +86,10 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
             Extras.FOR_FLUTTER_METHOD_APPEND_ACCOUNT -> appendAccount(p0, p1)
             Extras.FOR_FLUTTER_METHOD_DEL_ACCOUNT -> delAccount(p0, p1)
             Extras.FOR_FLUTTER_METHOD_DEL_ALL_ACCOUNT -> delAllAccount(p0, p1)
+            Extras.FOR_FLUTTER_METHOD_UPSERT_ATTRIBUTES -> upsertAttributes(p0, p1)
+            Extras.FOR_FLUTTER_METHOD_DEL_ATTRIBUTES -> delAttributes(p0, p1)
+            Extras.FOR_FLUTTER_METHOD_CLEAR_AND_APPEND_ATTRIBUTES -> clearAndAppendAttributes(p0, p1)
+            Extras.FOR_FLUTTER_METHOD_CLEAR_ATTRIBUTES -> clearAttributes(p0, p1)
             Extras.FOR_FLUTTER_METHOD_ENABLE_OTHER_PUSH -> enableOtherPush(p0, p1)
             Extras.FOR_FLUTTER_METHOD_ENABLE_OTHER_PUSH2 -> enableOtherPush2(p0, p1)
             Extras.FOR_FLUTTER_METHOD_GET_OTHER_PUSH_TOKEN -> getOtherPushToken(p0, p1)
@@ -495,6 +499,98 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
                 Log.i(TAG, "delAllAccount failure")
                 val para = "delAllAccount failure----->code=${p1}--->message=${p2}"
                 toFlutterMethod(Extras.XG_PUSH_DID_CLEAR_WITH_IDENENTIFIER, para)
+            }
+        })
+    }
+
+    /**
+     * 新增用户属性
+     */
+    fun upsertAttributes(call: MethodCall, result: MethodChannel.Result?) {
+        val map = call.arguments<Map<String, String>>()
+        val attributesMap = map[Extras.ATTRIBUTES] as HashMap<String, String>
+        Log.i(TAG, "调用信鸽SDK-->upsertAttributes()----->attributes=${attributesMap}")
+        val context = if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext
+        XGPushManager.upsertAttributes(context, "upsertAttributes", attributesMap, object : XGIOperateCallback {
+            override fun onSuccess(p0: Any?, p1: Int) {
+                Log.i(TAG, "upsertAttributes successful")
+                val para = "upsertAttributes successful"
+                toFlutterMethod(Extras.XG_PUSH_DID_BIND_WITH_IDENENTIFIER, para)
+            }
+
+            override fun onFail(p0: Any?, p1: Int, p2: String?) {
+                Log.i(TAG, "upsertAttributes failure")
+                val para = "upsertAttributes failure----->code=${p1}--->message=${p2}"
+                toFlutterMethod(Extras.XG_PUSH_DID_BIND_WITH_IDENENTIFIER, para)
+            }
+        })
+    }
+
+    /**
+     * 删除用户属性
+     */
+    fun delAttributes(call: MethodCall, result: MethodChannel.Result?) {
+        val map = call.arguments<Map<String, List<String>>>()
+        val attributesList = HashSet<String>(map[Extras.ATTRIBUTES])
+        Log.i(TAG, "调用信鸽SDK-->delAttributes()----->attributes=${attributesList}")
+        val context = if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext
+        XGPushManager.delAttributes(context, "delAttributes", attributesList, object : XGIOperateCallback {
+            override fun onSuccess(p0: Any?, p1: Int) {
+                Log.i(TAG, "delAttributes successful")
+                val para = "delAttributes successful"
+                toFlutterMethod(Extras.XG_PUSH_DID_BIND_WITH_IDENENTIFIER, para)
+            }
+
+            override fun onFail(p0: Any?, p1: Int, p2: String?) {
+                Log.i(TAG, "delAttributes failure")
+                val para = "delAttributes failure----->code=${p1}--->message=${p2}"
+                toFlutterMethod(Extras.XG_PUSH_DID_BIND_WITH_IDENENTIFIER, para)
+            }
+        })
+    }
+
+    /**
+     * 更新用户属性
+     */
+    fun clearAndAppendAttributes(call: MethodCall, result: MethodChannel.Result?) {
+        val map = call.arguments<Map<String, String>>()
+        val attributesMap = map[Extras.ATTRIBUTES] as HashMap<String, String>
+        Log.i(TAG, "调用信鸽SDK-->clearAndAppendAttributes()----->attributes=${attributesMap}")
+        val context = if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext
+        XGPushManager.clearAndAppendAttributes(context, "clearAndAppendAttributes", attributesMap, object : XGIOperateCallback {
+            override fun onSuccess(p0: Any?, p1: Int) {
+                Log.i(TAG, "clearAndAppendAttributes successful")
+                val para = "clearAndAppendAttributes successful"
+                toFlutterMethod(Extras.XG_PUSH_DID_BIND_WITH_IDENENTIFIER, para)
+            }
+
+            override fun onFail(p0: Any?, p1: Int, p2: String?) {
+                Log.i(TAG, "clearAndAppendAttributes failure")
+                val para = "clearAndAppendAttributes failure----->code=${p1}--->message=${p2}"
+                toFlutterMethod(Extras.XG_PUSH_DID_BIND_WITH_IDENENTIFIER, para)
+            }
+        })
+    }
+
+
+
+    /**
+     * 清除全部用户属性
+     */
+    fun clearAttributes(call: MethodCall, result: MethodChannel.Result?) {
+        Log.i(TAG, "调用信鸽SDK-->clearAttributes()")
+        val context = if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext
+        XGPushManager.clearAttributes(context, "clearAttributes", object : XGIOperateCallback {
+            override fun onSuccess(p0: Any?, p1: Int) {
+                Log.i(TAG, "clearAttributes successful")
+                val para = "clearAttributes successful"
+                toFlutterMethod(Extras.XG_PUSH_DID_BIND_WITH_IDENENTIFIER, para)
+            }
+
+            override fun onFail(p0: Any?, p1: Int, p2: String?) {
+                Log.i(TAG, "clearAttributes failure")
+                val para = "clearAttributes failure----->code=${p1}--->message=${p2}"
+                toFlutterMethod(Extras.XG_PUSH_DID_BIND_WITH_IDENENTIFIER, para)
             }
         })
     }

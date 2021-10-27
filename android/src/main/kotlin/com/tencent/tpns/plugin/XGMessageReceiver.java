@@ -96,6 +96,11 @@ public class XGMessageReceiver extends XGPushBaseReceiver {
     }
 
     @Override
+    public void onQueryTagsResult(Context context, int i, String s, String o) {
+        
+    }
+
+    @Override
     public void onTextMessage(Context context, XGPushTextMessage message) {
         try {
             if (XgFlutterPlugin.instance == null) {

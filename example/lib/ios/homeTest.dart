@@ -3,10 +3,11 @@ import 'flutter_tableview.dart';
 import 'package:tpns_flutter_plugin/tpns_flutter_plugin.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-List<String> sectionTitleList = ['关于账号接口', '关于标签接口', '关于应用接口'];
+List<String> sectionTitleList = ['关于账号接口', '关于标签接口', '关于用户属性接口', '关于应用接口'];
 List<List<String>> sectionList = [
   ['设置账号', '解绑账号', '清除全部账号'],
   ['绑定一个标签', '解绑一个标签', '更新标签', '清除全部标签'],
+  ['新增用户属性', '删除用户属性', '更新用户属性', '清除全部用户属性'],
   ['注册推送服务', '注销推送服务', '设备推送标识', '上报当前角标数', 'SDK 版本']
 ];
 
@@ -114,6 +115,19 @@ class HomeTestBodyState extends State<HomeTestBody> {
       }
     } else if (section == 2) {
       if (row == 0) {
+        Map<String, String> attributes = {'nickname': "testAttribute"};
+        tpush.upsertAttributes(attributes);
+      } else if (row == 1) {
+        List<String> delAttr = ['nickname'];
+        tpush.delAttributes(delAttr);
+      } else if (row == 2) {
+        Map<String, String> attributes = {'nickname': "testAttribute2"};
+        tpush.clearAndAppendAttributes(attributes);
+      } else if (row == 3) {
+        tpush.clearAttributes();
+      }
+    } else if (section == 3) {
+      if (row == 0) {
         tpush.startXg("1600007893", "IX4BGYYG8L4L");
       } else if (row == 1) {
         tpush.stopXg();
@@ -147,7 +161,8 @@ class HomeTestBodyState extends State<HomeTestBody> {
       onTap: () {
         if ((section == 0 && row == 2) ||
             (section == 1 && row == 3) ||
-            (section == 2 && row != 3)) {
+            (section == 2) ||
+            (section == 3 && row != 3)) {
           _doAction(section, row);
         } else {
           _showAlert(section, row);

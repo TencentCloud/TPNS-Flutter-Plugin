@@ -230,6 +230,48 @@ class XgFlutterPlugin {
     }
   }
 
+/* ============用户属性接口V1.1.5新增============ */
+
+  /// 新增用户属性
+  /// attributes 类型为 Map 字典(k, v字符串不允许有空格或者是tab字符) {'key': 'value'}
+  void upsertAttributes(Map<String, String> attributes) {
+    if (Platform.isIOS) {
+      _channel.invokeMethod('upsertAttributes', attributes);
+    } else {
+      xgApi.upsertAttributes(attributes: attributes);
+    }
+  }
+
+  /// 删除用户属性
+  /// attributes 类型为字符串数组(字符串不允许有空格或者是tab字符) ['key']
+  void delAttributes(List<String> attributes) {
+    if (Platform.isIOS) {
+      _channel.invokeMethod('delAttributes', attributes);
+    } else {
+      xgApi.delAttributes(attributes: attributes);
+    }
+  }
+
+  /// 更新用户属性
+  /// attributes 类型为 Map 字典(k, v字符串不允许有空格或者是tab字符) {'key': 'value'}
+  void clearAndAppendAttributes(Map<String, String> attributes) {
+    if (Platform.isIOS) {
+      _channel.invokeMethod('clearAndAppendAttributes', attributes);
+    } else {
+      xgApi.clearAndAppendAttributes(attributes: attributes);
+    }
+  }
+
+  /// 清除全部用户属性
+  void clearAttributes() {
+    if (Platform.isIOS) {
+      _channel.invokeMethod('clearAttributes');
+    } else {
+      xgApi.clearAttributes();
+    }
+  }
+
+
 /* ======角标====== */
 
   /// 同步角标值到TPNS服务器

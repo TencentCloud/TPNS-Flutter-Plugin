@@ -5,6 +5,7 @@ public interface Extras {
     String DEBUG = "enableDebug";
     String TAG_NAME = "tagName";  //tag名称
     String TAG_NAMES = "tagNames"; //tag名称集合
+    String ATTRIBUTES = "attributes";
     String CONTENT = "content";  //
     String RESULT_CODE = "resultCode";
     String MESSAGE = "message";
@@ -43,6 +44,10 @@ public interface Extras {
     String FOR_FLUTTER_METHOD_APPEND_ACCOUNT = "appendAccount";
     String FOR_FLUTTER_METHOD_DEL_ACCOUNT = "delAccount";
     String FOR_FLUTTER_METHOD_DEL_ALL_ACCOUNT = "delAllAccount";
+    String FOR_FLUTTER_METHOD_UPSERT_ATTRIBUTES = "upsertAttributes";
+    String FOR_FLUTTER_METHOD_DEL_ATTRIBUTES = "delAttributes";
+    String FOR_FLUTTER_METHOD_CLEAR_AND_APPEND_ATTRIBUTES = "clearAndAppendAttributes";
+    String FOR_FLUTTER_METHOD_CLEAR_ATTRIBUTES = "clearAttributes";
     String FOR_FLUTTER_METHOD_ENABLE_OTHER_PUSH = "enableOtherPush";
     String FOR_FLUTTER_METHOD_ENABLE_OTHER_PUSH2 = "enableOtherPush2";
     String FOR_FLUTTER_METHOD_GET_OTHER_PUSH_TOKEN = "getOtherPushToken";

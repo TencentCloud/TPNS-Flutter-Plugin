@@ -208,6 +208,26 @@ class XgAndroidApi {
     _channel?.invokeMethod('delAllAccount');
   }
 
+  ///新增用户属性
+  void upsertAttributes({Map<String, String>? attributes}) {
+    _channel?.invokeMethod('upsertAttributes', {'attributes': attributes});
+  }
+
+  ///删除用户属性
+  void delAttributes({List<String>? attributes}) {
+    _channel?.invokeMethod('delAttributes', {'attributes': attributes});
+  }
+
+  ///更新用户属性
+  void clearAndAppendAttributes({Map<String, String>? attributes}) {
+    _channel?.invokeMethod('clearAndAppendAttributes', {'attributes': attributes});
+  }
+
+  ///清除全部用户属性
+  void clearAttributes() {
+    _channel?.invokeMethod('clearAttributes');
+  }
+
 /*-------------第三方厂商通道集成-------------*/
 
   /// 开启其他推送
