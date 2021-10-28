@@ -300,6 +300,13 @@ class XgAndroidApi {
   ///开启小米厂商通道
   ///appId  为在小米平台注册所得Id
   ///appKey 为在小米平台注册所得key
+  @Deprecated(
+      'Please call the following apis instead:'
+        'XgFlutterPlugin.xgApi.setMiPushAppId(appId:"APP_ID");'
+        'XgFlutterPlugin.xgApi.setMiPushAppKey(appKey: "APPKEY");'
+        'XgFlutterPlugin.xgApi.enableOtherPush();'
+        'XgFlutterPlugin.xgApi.regPush();'
+  )
   void startMiPush({String? appId, String? appKey}) async {
     final bool isMIUI = await _channel?.invokeMethod('isMiuiRom');
     if (isMIUI) {
@@ -319,6 +326,11 @@ class XgAndroidApi {
   }
 
   ///开启华为厂商通道
+  @Deprecated(
+      'Please call the following apis instead:'
+          'XgFlutterPlugin.xgApi.enableOtherPush();'
+          'XgFlutterPlugin.xgApi.regPush();'
+  )
   void startHuaWeiPush() async {
     final bool isHUAWEI = await _channel?.invokeMethod('isEmuiRom');
     if (isHUAWEI) {
@@ -358,6 +370,13 @@ class XgAndroidApi {
   ///isNotification 是否开启OPPO通知
   /// appId为在Oppo平台注册所得Id
   /// appKey为在Oppo平台注册所得Key
+  @Deprecated(
+      'Please call the following apis instead:'
+          'XgFlutterPlugin.xgApi.setOppoPushAppId(appId:"APP_ID");'
+          'XgFlutterPlugin.xgApi.setOppoPushAppKey(appKey: "APPKEY");'
+          'XgFlutterPlugin.xgApi.enableOtherPush();'
+          'XgFlutterPlugin.xgApi.regPush();'
+  )
   void startOPPOPush({String? appId, String? appKey, bool? isNotification}) async {
     final bool isOppo = await _channel?.invokeMethod('isOppoRom');
     if (isOppo) {
@@ -379,6 +398,11 @@ class XgAndroidApi {
   }
 
   ///开启ViVO厂商通道
+  @Deprecated(
+      'Please call the following apis instead:'
+          'XgFlutterPlugin.xgApi.enableOtherPush();'
+          'XgFlutterPlugin.xgApi.regPush();'
+  )
   void startViVOPush() async {
     final bool isVivo = await _channel?.invokeMethod('isVivoRom');
     if (isVivo) {
@@ -410,6 +434,13 @@ class XgAndroidApi {
   ///开启魅族手机厂商通道
   ///appId为在魅族平台注册所得Id
   ///appKey为在魅族平台注册所得key
+  @Deprecated(
+      'Please call the following apis instead:'
+          'XgFlutterPlugin.xgApi.setMzPushAppId(appId:"APP_ID");'
+          'XgFlutterPlugin.xgApi.setMzPushAppKey(appKey: "APPKEY");'
+          'XgFlutterPlugin.xgApi.enableOtherPush();'
+          'XgFlutterPlugin.xgApi.regPush();'
+  )
   void startMeizuPush({String? appId, String? appKey}) async {
     final bool isMeiZu = await _channel?.invokeMethod('isMeizuRom');
     if (isMeiZu) {
@@ -429,6 +460,11 @@ class XgAndroidApi {
   }
 
   ///开启谷歌手机厂商通道
+  @Deprecated(
+      'Please call the following apis instead:'
+          'XgFlutterPlugin.xgApi.enableOtherPush();'
+          'XgFlutterPlugin.xgApi.regPush();'
+  )
   void startFcmPush() async {
     final bool isFcm = await _channel?.invokeMethod('isFcmRom');
     if (isFcm) {
