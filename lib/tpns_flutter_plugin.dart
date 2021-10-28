@@ -271,7 +271,6 @@ class XgFlutterPlugin {
     }
   }
 
-
 /* ======角标====== */
 
   /// 同步角标值到TPNS服务器

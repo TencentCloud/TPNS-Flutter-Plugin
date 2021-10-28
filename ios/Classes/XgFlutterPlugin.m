@@ -76,6 +76,14 @@ bool withInAppAlert = true;
       [self deleteTags:call result:result];
   } else if([@"cleanTags" isEqualToString:call.method]) {
       [[XGPushTokenManager defaultTokenManager] clearTags];
+  } else if([@"upsertAttributes" isEqualToString:call.method]) {
+      [self upsertAttributes:call result:result];
+  } else if([@"delAttributes" isEqualToString:call.method]) {
+      [self delAttributes:call result:result];
+  } else if([@"clearAndAppendAttributes" isEqualToString:call.method]) {
+      [self clearAndAppendAttributes:call result:result];
+  } else if([@"clearAttributes" isEqualToString:call.method]) {
+      [[XGPushTokenManager defaultTokenManager] clearAttributes];
   } else if([@"bindWithIdentifier" isEqualToString:call.method]) {
       [self bindWithIdentifier:call result:result];
   } else if([@"updateBindIdentifier" isEqualToString:call.method]) {
@@ -194,7 +202,26 @@ bool withInAppAlert = true;
     [[XGPushTokenManager defaultTokenManager] delTags:tags];
 }
 
-/**===============================V1.0.4请使用以上账号标签接口===============================*/
+/**===================================V1.1.5新增用户属性接口===================================*/
+
+/// 新增用户属性
+- (void)upsertAttributes:(FlutterMethodCall*)call result:(FlutterResult)result {
+    NSDictionary *attributes = call.arguments;
+    [[XGPushTokenManager defaultTokenManager] upsertAttributes:attributes];
+}
+
+ /// 删除用户属性
+- (void)delAttributes:(FlutterMethodCall*)call result:(FlutterResult)result {
+    NSArray *attributeList = call.arguments;
+    NSSet *attributeKeys = [[NSSet alloc] initWithArray:attributeList];
+    [[XGPushTokenManager defaultTokenManager] delAttributes:attributeKeys];
+}
+
+  /// 更新用户属性
+- (void)clearAndAppendAttributes:(FlutterMethodCall*)call result:(FlutterResult)result {
+    NSDictionary *attributes = call.arguments;
+    [[XGPushTokenManager defaultTokenManager] clearAndAppendAttributes:attributes];
+}
 
 /**===================================V1.0.4废弃账号标签接口===================================*/
 
@@ -354,7 +381,7 @@ bool withInAppAlert = true;
 
 #pragma mark - XGPushTokenManagerDelegate
 
-/**===============================V1.0.7新增===============================*/
+/**===============================账号和标签回调，V1.1.5新增===============================*/
 
 - (void)xgPushDidUpsertAccountsByDict:(NSDictionary *)accountsDict error:(NSError *)error {
     NSString *resultStr = error == nil ? @"设置账号成功" : [NSString stringWithFormat:@"设置账号失败，error:%@", error.description];
@@ -387,6 +414,29 @@ bool withInAppAlert = true;
     NSString *resultStr = error == nil ? @"清除标签成功" : [NSString stringWithFormat:@"清除标签失败，error:%@", error.description];
     [_channel invokeMethod:@"xgPushDidClearAllIdentifiers" arguments:resultStr];
 }
+
+/**===============================用户属性回调，V1.1.5新增===============================*/
+
+- (void)xgPushDidUpsertAttributes:(NSDictionary *)attributes invalidKeys:(NSArray *)keys error:(NSError *)error {
+    NSString *resultStr = error == nil ? @"设置用户属性成功" : [NSString stringWithFormat:@"设置用户属性失败，error:%@", error.description];
+    [_channel invokeMethod:@"xgPushDidBindWithIdentifier" arguments:resultStr];
+}
+
+- (void)xgPushDidDelAttributeKeys:(NSSet *)attributeKeys invalidKeys:(NSArray *)keys error:(NSError *)error {
+    NSString *resultStr = error == nil ? @"删除用户属性成功" : [NSString stringWithFormat:@"删除用户属性失败，error:%@", error.description];
+    [_channel invokeMethod:@"xgPushDidUnbindWithIdentifier" arguments:resultStr];
+}
+
+- (void)xgPushDidClearAndAppendAttributes:(NSDictionary *)attributes invalidKeys:(NSArray *)keys error:(NSError *)error {
+    NSString *resultStr = error == nil ? @"更新用户属性成功" : [NSString stringWithFormat:@"更新用户属性失败，error:%@", error.description];
+    [_channel invokeMethod:@"xgPushDidUpdatedBindedIdentifier" arguments:resultStr];
+}
+
+- (void)xgPushDidClearAttributesWithError:(NSError *)error {
+    NSString *resultStr = error == nil ? @"清除用户属性成功" : [NSString stringWithFormat:@"清除用户属性失败，error:%@", error.description];
+    [_channel invokeMethod:@"xgPushDidClearAllIdentifiers" arguments:resultStr];
+}
+
 
 /**=======================================================================*/
 
