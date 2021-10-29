@@ -97,6 +97,28 @@
     XgAndroidApi getXgAndroidApi();
 ```
 
+#### 15. 新增用户属性
+    /// attributes 类型为 Map 字典(k, v字符串不允许有空格或者是tab字符)
+```dart
+  void upsertAttributes(Map<String, String> attributes);
+```
+
+#### 16. 删除用户属性
+    /// attributes 类型为要删除属性 key 的字符串数组(字符串不允许有空格或者是tab字符)
+```dart
+  void delAttributes(List<String> attributes);
+```
+
+#### 17. 更新用户属性
+    /// attributes 类型为 Map 字典(k, v字符串不允许有空格或者是tab字符)
+```dart
+  void clearAndAppendAttributes(Map<String, String> attributes);
+```
+
+#### 18. 清除全部用户属性
+```dart
+  void clearAttributes();
+```
 
 ## 安卓端 XgAndroidApi 接口说明
 
