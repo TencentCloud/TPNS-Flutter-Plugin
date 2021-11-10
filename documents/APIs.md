@@ -128,54 +128,64 @@
 >     XgFlutterPlugin.xgApi.enableOtherPush()
 > ```
 
-#### 1  开启其他推送
+#### 1. 开启其他推送
 ```dart
     enableOtherPush();
 ```
 
-#### 2  设置小米推送的APP_ID
+#### 2. 设置小米推送的APP_ID
 ```dart
     setMiPushAppId({String appId});
 ```
 
-#### 3  设置小米推送的APP_KEY
+#### 3. 设置小米推送的APP_KEY
 ```dart
     setMiPushAppKey({String appKey});
 ```
 
-#### 4  设置魅族推送所需appID
+#### 4. 设置魅族推送所需appID
 ```dart
     setMzPushAppId({String appId});
 ```
 
-#### 5  设置魅族推送所需appKey
+#### 5. 设置魅族推送所需appKey
 ```dart
     setMzPushAppKey({String appKey});
 ```
 
-#### 6  开启Oppo通知
+#### 6. 开启Oppo通知
 ```dart
     enableOppoNotification();
 ```
 
-#### 7  设置Oppo推送ID
+#### 7. 设置Oppo推送ID
 ```dart
     setOppoPushAppId({String appId});
 ```
 
-#### 8  设置Oppo推送Key
+#### 8. 设置Oppo推送Key
 ```dart
      setOppoPushAppKey({String appKey});
 ```
 
-#### 9  清空当前应用在通知栏的通知
+#### 9. 清空当前应用在通知栏的通知
 ```dart
      cancelAllNotification();
 ```
 
-#### 10 配置是否关闭拉起其他 App；填入 false 为不拉起，默认为 true
+#### 10. 配置是否关闭拉起其他 App；填入 false 为不拉起，默认为 true
 ```dart
      enablePullUpOtherApp({bool enable})
+```
+
+#### 11. 安卓角标设置，支持华为、OPPO、vivo，其中 OPPO 需另外向厂商申请角标展示权限
+```dart
+     setBadgeNum({int badgeNum})
+```
+
+#### 12. 设置手机应用角标归0，支持华为、OPPO、vivo，其中 OPPO 需另外向厂商申请角标展示权限
+```dart
+     resetBadgeNum()
 ```
 
 ##  安卓端回调接口说明
