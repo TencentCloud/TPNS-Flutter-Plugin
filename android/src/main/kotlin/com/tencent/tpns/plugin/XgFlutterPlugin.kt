@@ -751,7 +751,8 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
     /**
      * 判断是否为谷歌手机
      */
-    fun isFcmRom(call: MethodCall?, result: MethodChannel.Result?) { //        boolean is
+    private fun isFcmRom(call: MethodCall, result: MethodChannel.Result) {
+      result.success(DeviceInfoUtil.isFcmRom())
     }
 
     /**
