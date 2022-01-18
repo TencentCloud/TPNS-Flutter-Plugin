@@ -454,6 +454,9 @@ class XgAndroidApi {
   /*------------------谷歌厂商通道集成---------------*/
 
   ///判断是否为谷歌手机
+  @Deprecated(
+      'TPNS SDK would auto-check if the device supports Firebase-messaging.'
+  )
   Future<bool> isFcmRom() async {
     final bool isFcm = await _channel?.invokeMethod('isFcmRom');
     return isFcm;
