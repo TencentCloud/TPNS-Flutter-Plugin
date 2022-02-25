@@ -20,7 +20,7 @@ public class XGMessageReceiver extends XGPushBaseReceiver {
     public void onRegisterResult(Context context, int errorCode, XGPushRegisterResult message) {
         try {
             if (XgFlutterPlugin.instance == null) {
-                Log.w(TAG, "XgFlutterPlugin.instance has not initialized");
+                Log.w(TAG, "onRegisterResult - XgFlutterPlugin.instance has not initialized");
                 return;
             }
             if (context == null || message == null) {
@@ -108,7 +108,7 @@ public class XGMessageReceiver extends XGPushBaseReceiver {
     public void onTextMessage(Context context, XGPushTextMessage message) {
         try {
             if (XgFlutterPlugin.instance == null) {
-                Log.w(TAG, "XgFlutterPlugin.instance has not initialized");
+                Log.w(TAG, "onTextMessage - XgFlutterPlugin.instance has not initialized");
                 return;
             }
             String content = message.getContent();
@@ -131,9 +131,30 @@ public class XGMessageReceiver extends XGPushBaseReceiver {
     public void onNotificationClickedResult(Context context, XGPushClickedResult notifiShowedRlt) {
         try {
             if (XgFlutterPlugin.instance == null) {
-                Log.w(TAG, "XgFlutterPlugin.instance has not initialized");
+                Log.w(TAG, "onNotificationClickedResult - XgFlutterPlugin.instance has not initialized");
+
+                long start = System.currentTimeMillis();
+                while (System.currentTimeMillis() - start < 3 * 1000 ) {
+                    try {
+                        Thread.sleep(200);
+
+                        if (XgFlutterPlugin.instance != null) {
+                            Log.w(TAG, "onNotificationClickedResult - XgFlutterPlugin.instance initialized after " 
+                                    + (System.currentTimeMillis() - start) + " ms");
+                            break;
+                        }
+
+                    } catch (Throwable e) {
+                        Log.w(TAG, "onNotificationClickedResult - wait for XgFlutterPlugin.instance error: " + e.toString());
+                    }
+                }
+            }
+
+            if (XgFlutterPlugin.instance == null) {
+                Log.w(TAG, "onNotificationClickedResult - XgFlutterPlugin.instance has not initialized within 3000 ms");
                 return;
             }
+
             if (context == null || notifiShowedRlt == null) {
                 Map<String, Object> para = new HashMap<>();
                 para.put(Extras.RESULT_CODE, -1);
@@ -169,7 +190,7 @@ public class XGMessageReceiver extends XGPushBaseReceiver {
     public void onNotificationShowedResult(Context context, XGPushShowedResult message) {
         try {
             if (XgFlutterPlugin.instance == null) {
-                Log.w(TAG, "XgFlutterPlugin.instance has not initialized");
+                Log.w(TAG, "onNotificationShowedResult - XgFlutterPlugin.instance has not initialized");
                 return;
             }
             if (context == null || message == null) {
