@@ -1,6 +1,7 @@
 package com.tencent.tpns.plugin;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 import com.tencent.android.tpush.XGPushBaseReceiver;
 import com.tencent.android.tpush.XGPushClickedResult;
@@ -29,8 +30,11 @@ public class XGMessageReceiver extends XGPushBaseReceiver {
             }
             if (errorCode == XGPushBaseReceiver.SUCCESS) {
                 String token = message.getToken();
-                String msg = token;
-                XgFlutterPlugin.instance.toFlutterMethod(Extras.ON_REGISTERED_DONE, msg);
+                // 过滤掉厂商通道注册结果
+                if (!TextUtils.isEmpty(token)) {
+                    String msg = token;
+                    XgFlutterPlugin.instance.toFlutterMethod(Extras.ON_REGISTERED_DONE, msg);
+                }
             } else {
                 String msg = "TPNS token: " + message.getToken() + " error: " + errorCode;
                 XgFlutterPlugin.instance.toFlutterMethod(Extras.ON_REGISTERED_DEVICE_TOKEN, msg);
