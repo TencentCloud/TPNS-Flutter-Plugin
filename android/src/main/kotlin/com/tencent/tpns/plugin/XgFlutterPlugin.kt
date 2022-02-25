@@ -112,6 +112,7 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
             Extras.FOR_FLUTTER_METHOD_IS_OPPO_ROM -> isOppoRom(p0, p1)
             Extras.FOR_FLUTTER_METHOD_IS_VIVO_ROM -> isVivoRom(p0, p1)
             Extras.FOR_FLUTTER_METHOD_IS_FCM_ROM -> isFcmRom(p0, p1)
+            Extras.FOR_FLUTTER_METHOD_IS_GOOGLE_ROM -> isGoogleRom(p0, p1)
             Extras.FOR_FLUTTER_METHOD_IS_360_ROM -> is360Rom(p0, p1)
             Extras.FOR_FLUTTER_METHOD_ENABLE_DEBUG -> setEnableDebug(p0, p1)
             Extras.FOR_FLUTTER_METHOD_SET_HEADER_BEAT_INTERVAL_MS -> setHeartbeatIntervalMs(p0, p1)
@@ -749,10 +750,16 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
     }
 
     /**
+     * 判断是否为支持FCM手机
+     */
+    fun isFcmRom(call: MethodCall?, result: MethodChannel.Result?) { //        boolean is
+    }
+
+    /**
      * 判断是否为谷歌手机
      */
-    private fun isFcmRom(call: MethodCall, result: MethodChannel.Result) {
-      result.success(DeviceInfoUtil.isFcmRom())
+    private fun isGoogleRom(call: MethodCall, result: MethodChannel.Result) {
+      result.success(DeviceInfoUtil.isGoogleRom())
     }
 
     /**

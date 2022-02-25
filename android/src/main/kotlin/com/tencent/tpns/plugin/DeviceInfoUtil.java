@@ -102,7 +102,7 @@ public class DeviceInfoUtil {
      * @return result
      */
 
-    public static boolean isFcmRom() {
+    public static boolean isGoogleRom() {
       String property = getSystemProperty("ro.product.vendor.manufacturer");
       return !TextUtils.isEmpty(property) && property.toLowerCase().contains("google");
     }

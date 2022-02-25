@@ -453,10 +453,16 @@ class XgAndroidApi {
 
   /*------------------谷歌厂商通道集成---------------*/
 
-  ///判断是否为谷歌手机
+  ///判断是否为支持FCM手机
   Future<bool> isFcmRom() async {
     final bool isFcm = await _channel?.invokeMethod('isFcmRom');
     return isFcm;
+  }
+
+  ///判断是否为谷歌手机
+  Future<bool> isGoogleRom() async {
+    final bool isGoogle = await _channel?.invokeMethod('isGoogleRom');
+    return isGoogle;
   }
 
   ///开启谷歌手机厂商通道
@@ -466,8 +472,8 @@ class XgAndroidApi {
           'XgFlutterPlugin.xgApi.regPush();'
   )
   void startFcmPush() async {
-    final bool isFcm = await _channel?.invokeMethod('isFcmRom');
-    if (isFcm) {
+    final bool isGoogle = await _channel?.invokeMethod('isGoogleRom');
+    if (isGoogle) {
       _channel?.invokeMethod('enableOtherPush');
       _channel?.invokeMethod('regPush');
     }
