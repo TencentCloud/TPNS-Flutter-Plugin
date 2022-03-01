@@ -97,10 +97,16 @@ public class DeviceInfoUtil {
     }
 
     /**
-     * 判断 miui emui meizu oppo vivo Rom
+     * 判断 google miui emui meizu oppo vivo 360 Rom
      *
-     * @return
+     * @return result
      */
+
+    public static boolean isGoogleRom() {
+      String property = getSystemProperty("ro.product.vendor.manufacturer");
+      return !TextUtils.isEmpty(property) && property.toLowerCase().contains("google");
+    }
+
     public static boolean isMiuiRom() {
         String property = getSystemProperty("ro.miui.ui.version.name");
         return !TextUtils.isEmpty(property);
