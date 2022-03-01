@@ -71,7 +71,7 @@ public interface Extras {
     String FOR_FLUTTER_METHOD_IS_VIVO_ROM = "isVivoRom";
     String FOR_FLUTTER_METHOD_IS_360_ROM = "is360Rom";
     String FOR_FLUTTER_METHOD_IS_FCM_ROM = "isFcmRom";
-    String FOR_FLUTTER_METHOD_IS_GOOGLE_ROM = "isGoogleRom"
+    String FOR_FLUTTER_METHOD_IS_GOOGLE_ROM = "isGoogleRom";
     String FOR_FLUTTER_METHOD_ENABLE_DEBUG = "setEnableDebug";
     String FOR_FLUTTER_METHOD_SET_HEADER_BEAT_INTERVAL_MS = "setHeartbeatIntervalMs";
 
