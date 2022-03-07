@@ -15,7 +15,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   final XgFlutterPlugin tpush = new XgFlutterPlugin();
 
   @override
@@ -78,7 +77,7 @@ class _MyAppState extends State<MyApp> {
       },
       xgPushClickAction: (Map<String, dynamic> msg) async {
         print("flutter xgPushClickAction $msg");
-        _showAlert("flutter xgPushClickAction");
+        _showAlert("clickResponse");
       },
     );
 
