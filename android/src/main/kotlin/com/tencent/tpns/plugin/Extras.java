@@ -28,6 +28,10 @@ public interface Extras {
     String BADGE_NUM = "badgeNum";
     String CHANNEL_ID = "channelId";
     String CHANNEL_NAME = "channelName";
+    String ENABLE_VIBRATION = "enableVibration";
+    String ENABLE_LIGHTS = "enableLights";
+    String ENABLE_SOUND = "enableSound";
+    String SOUND_FILE_NAME = "soundFileName";
 
     //Flutter调用native的函数名称
     String FOR_FLUTTER_METHOD_REG_PUSH = "regPush";
@@ -71,7 +75,7 @@ public interface Extras {
     String FOR_FLUTTER_METHOD_IS_VIVO_ROM = "isVivoRom";
     String FOR_FLUTTER_METHOD_IS_360_ROM = "is360Rom";
     String FOR_FLUTTER_METHOD_IS_FCM_ROM = "isFcmRom";
-    String FOR_FLUTTER_METHOD_IS_GOOGLE_ROM = "isGoogleRom"
+    String FOR_FLUTTER_METHOD_IS_GOOGLE_ROM = "isGoogleRom";
     String FOR_FLUTTER_METHOD_ENABLE_DEBUG = "setEnableDebug";
     String FOR_FLUTTER_METHOD_SET_HEADER_BEAT_INTERVAL_MS = "setHeartbeatIntervalMs";
 

@@ -1,6 +1,6 @@
 package com.tencent.tpns.plugin
 
-
+import android.net.Uri;
 import android.util.Log
 import androidx.annotation.NonNull
 import com.tencent.android.tpush.XGIOperateCallback
@@ -658,9 +658,29 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
         val map = call.arguments<Map<String, Int>>()
         val channelId = map[Extras.CHANNEL_ID] as String
         val channelName = map[Extras.CHANNEL_NAME] as String
-        Log.i(TAG, "调用信鸽SDK-->createNotificationChannel(${channelId}, ${channelName})")
-        XGPushManager.createNotificationChannel(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext, 
-            channelId, channelName, true, true, true, null)
+        if (map.size == 2) {
+            Log.i(TAG, "调用信鸽SDK-->createNotificationChannel(${channelId}, ${channelName})")
+            XGPushManager.createNotificationChannel(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext, 
+                channelId, channelName, true, true, true, null)
+        } else {
+            val enableVibration = map[Extras.ENABLE_VIBRATION] as Boolean
+            val enableLights = map[Extras.ENABLE_LIGHTS] as Boolean
+            val enableSound = map[Extras.ENABLE_SOUND] as Boolean
+            val soundFileName = map[Extras.SOUND_FILE_NAME] as String
+
+            val context = if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext
+            val soundFileId = context.getResources().getIdentifier(soundFileName, "raw", context.getPackageName())
+            if (soundFileId > 0) {
+                val soundUri = "android.resource://" + context.getPackageName() + "/" + soundFileId;
+                Log.i(TAG, "调用信鸽SDK-->createNotificationChannel(${channelId}, ${channelName}, ${enableVibration}, ${enableLights}, ${enableSound}, ${soundUri})")
+                XGPushManager.createNotificationChannel(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext, 
+                    channelId, channelName, enableVibration, enableLights, enableSound, Uri.parse(soundUri))
+            } else {
+                Log.i(TAG, "调用信鸽SDK-->createNotificationChannel(${channelId}, ${channelName}, ${enableVibration}, ${enableLights}, ${enableSound}, null)")
+                XGPushManager.createNotificationChannel(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext, 
+                    channelId, channelName, enableVibration, enableLights, enableSound, null)
+            }
+        }
     }
 
 

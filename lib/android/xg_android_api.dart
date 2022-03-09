@@ -277,6 +277,13 @@ class XgAndroidApi {
     _channel?.invokeMethod('createNotificationChannel', {'channelId': channelId, 'channelName': channelName});
   }
 
+  /// 创建通知渠道，指定通知提示各项属性
+  /// 
+  /// soundFileName 直接填写铃声文件名，不带后缀；铃声文件放置在安卓应用模块的资源目录 /res/raw 下
+  void createNotificationChannelWithSound({String? channelId, String? channelName, bool? enableVibration, bool? enableLights, bool? enableSound, String? soundFileName}) {
+    _channel?.invokeMethod('createNotificationChannel', {'channelId': channelId, 'channelName': channelName, 'enableVibration': enableVibration, 'enableLights': enableLights, 'enableSound': enableSound, 'soundFileName': soundFileName});
+  }
+
   /*----------------小米厂商通道集成-----------*/
 
   /// 设置小米推送的APP_ID
