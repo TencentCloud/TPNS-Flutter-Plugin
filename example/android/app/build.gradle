@@ -38,7 +38,7 @@ android {
 
     defaultConfig {
         applicationId "com.xg.tpns_flutter_plugin_example"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
