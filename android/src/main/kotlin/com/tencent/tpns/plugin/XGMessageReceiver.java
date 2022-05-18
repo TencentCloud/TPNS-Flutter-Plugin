@@ -1,6 +1,8 @@
 package com.tencent.tpns.plugin;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import com.tencent.android.tpush.XGPushBaseReceiver;
@@ -15,6 +17,41 @@ import java.util.Map;
 public class XGMessageReceiver extends XGPushBaseReceiver {
 
     private static final String TAG = "XGMessageReceiver";
+
+    private static ReceiverHandler receiverHandler;
+
+    private class ReceiverHandler extends Handler {
+
+        private Context context;
+        private XGPushClickedResult clickedResult;
+
+        public ReceiverHandler(Context context, XGPushClickedResult clickedResult) {
+            this.context = context;
+            this.clickedResult = clickedResult;
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Log.i(TAG, "ReceiverHandler handleMessage from XgFlutterPlugin init");
+            processClickActionToFlutter(context, clickedResult);
+            receiverHandler = null;
+        }
+    }
+
+    /**
+     * 通知点击冷启动时，MethodChannel 初始化和点击回调的触发时机不固定，可能导致点击回调触发时，MethodChannel 还未初始化。
+     *
+     * 此处再 MethodChannel 初始化时尝试触发一次 handler，补偿冷启动时点击事件回调给 flutter
+     */
+    public static void sendHandlerMessage(){
+        if (receiverHandler != null) {
+            Message m = receiverHandler.obtainMessage();
+            m.sendToTarget();
+        } else {
+            Log.i(TAG, "ReceiverHandler sendHandlerMessage XgFlutterPlugin already init");
+        }
+    }
 
     @Override
     public void onRegisterResult(Context context, int errorCode, XGPushRegisterResult message) {
@@ -132,14 +169,23 @@ public class XGMessageReceiver extends XGPushBaseReceiver {
         try {
             if (XgFlutterPlugin.instance == null) {
                 Log.w(TAG, "XgFlutterPlugin.instance has not initialized");
-                return;
+                receiverHandler = new ReceiverHandler(context, notifiShowedRlt);
+            } else {
+                processClickActionToFlutter(context, notifiShowedRlt);
             }
+        } catch (Throwable e) {
+            Log.w(TAG, "onNotificationClickedResult error: " + e.toString());
+        }
+    }
+
+    private void processClickActionToFlutter(Context context, XGPushClickedResult notifiShowedRlt) {
+        try {
             if (context == null || notifiShowedRlt == null) {
                 Map<String, Object> para = new HashMap<>();
                 para.put(Extras.RESULT_CODE, -1);
                 para.put(Extras.MESSAGE, "通知栏展示失败----context == null ||  notifiShowedRlt == null");
-    //            XgFlutterPlugin.instance.toFlutterMethod(
-    //                    Extras.TO_FLUTTER_METHOD_NOTIFACTION_SHOW_RESULT, para);
+//            XgFlutterPlugin.instance.toFlutterMethod(
+//                    Extras.TO_FLUTTER_METHOD_NOTIFACTION_SHOW_RESULT, para);
                 return;
             }
             String content = notifiShowedRlt.getContent();
@@ -161,7 +207,7 @@ public class XGMessageReceiver extends XGPushBaseReceiver {
             //交由Flutter自主处理
             XgFlutterPlugin.instance.toFlutterMethod(Extras.XG_PUSH_CLICK_ACTION, para);
         } catch (Throwable e) {
-            Log.w(TAG, "onNotificationClickedResult error: " + e.toString());
+            Log.w(TAG, "processClickActionToFlutter error: " + e.toString());
         }
     }
 

@@ -45,6 +45,9 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
         fun registerWith(registrar: Registrar) {
             val channel = MethodChannel(registrar.messenger(), "tpns_flutter_plugin")
             channel.setMethodCallHandler(XgFlutterPlugin(registrar, channel))
+
+            Log.i("| XgpushpPlugin | Flutter | Android | ", "methodChannel registerWith XgFlutterPlugin")
+            Log.i("| XgpushpPlugin | Flutter | Android | ", "instance = " + instance)
         }
 
         fun checkPluginBindingInit() : Boolean {
@@ -834,6 +837,10 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         val channel1 = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "tpns_flutter_plugin")
         channel1.setMethodCallHandler(XgFlutterPlugin(flutterPluginBinding, channel1))
+
+        Log.i("| XgpushpPlugin | Flutter | Android | ", "methodChannel onAttachedToEngine XgFlutterPlugin")
+        Log.i("| XgpushpPlugin | Flutter | Android | ", "onAttachedToEngine instance = " + instance)
+        XGMessageReceiver.sendHandlerMessage()
     }
 
 
