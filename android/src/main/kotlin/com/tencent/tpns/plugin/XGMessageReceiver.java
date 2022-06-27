@@ -148,11 +148,13 @@ public class XGMessageReceiver extends XGPushBaseReceiver {
                 Log.w(TAG, "XgFlutterPlugin.instance has not initialized");
                 return;
             }
+            long msgId = message.getMsgId();
             String content = message.getContent();
             String customContent = message.getCustomContent();
             String title = message.getTitle();
             int pushChannel = message.getPushChannel();
             Map<String, Object> para = new HashMap<>();
+            para.put(Extras.MSG_ID, msgId);
             para.put(Extras.TITLE, title);
             para.put(Extras.CONTENT, content);
             para.put(Extras.CUSTOM_MESSAGE, customContent);

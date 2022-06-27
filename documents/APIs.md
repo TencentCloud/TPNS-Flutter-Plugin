@@ -194,6 +194,7 @@
 ```dart
     _onReceiveMessage 数据类型 Map<String, Object> para:
         key:
+            msgId: 推送任务ID
             title: 标题
             content: 消息文本
             customMessage: 自定义 key-value
