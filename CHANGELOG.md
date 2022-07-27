@@ -1,6 +1,7 @@
 ## V1.1.7
 
 * Use TPNS Android SDK 1.3.4.3
+* Use TPNS iOS SDK 1.3.9.0
 
 
 ## V1.1.6
