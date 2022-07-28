@@ -88,6 +88,7 @@ class _MyAppState extends State<MyApp> {
     // tpush.configureClusterDomainName("tpns.hk.tencent.com");
 
     /// 启动TPNS服务
+    /// 注意：为了不影响回调效果，建议在应用启动方法优先添加回调以及调用TPNS注册方法
     tpush.startXg("1600007893", "IX4BGYYG8L4L");
   }
 
