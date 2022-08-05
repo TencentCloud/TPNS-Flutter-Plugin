@@ -1,4 +1,8 @@
 ## 厂商通道接入说明
+
+>? TPNS 已封装各厂商推送通道 SDK，请参考下文引入对应厂商推送 SDK 依赖。
+> 如您的工程同时接入其他离线推送产品遇到依赖冲突，可对对应冲突依赖筛选使用其一。
+
 ### 1. 华为通道接入，可参考移动推送 TPNS [华为通道接入](https://cloud.tencent.com/document/product/548/45909)
 #### 1.1 工程配置：
 ##### 1.1.1 在安卓项目级目录 build.gradle 文件，【buildscript】>【 repositories & dependencies】下分别添加华为仓库地址和 HMS gradle 插件依赖：
