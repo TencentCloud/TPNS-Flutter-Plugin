@@ -52,9 +52,13 @@ class _MyAppState extends State<MyApp> {
       onReceiveMessage: (Map<String, dynamic> msg) async {
         print("flutter onReceiveMessage $msg");
       },
+      xgPushNetworkConnected: (String msg) async {
+        print("flutter xgPushNetworkConnected: $msg");
+        /// 建议在此同步角标到TPNS后台
+        /// tpush.setBadge(0);
+      },
       xgPushDidSetBadge: (String msg) async {
         print("flutter xgPushDidSetBadge: $msg");
-
         /// 在此可设置应用角标
         /// tpush.setAppBadge(0);
         _showAlert(msg);

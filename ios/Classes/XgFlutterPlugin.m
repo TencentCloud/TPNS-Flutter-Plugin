@@ -294,7 +294,9 @@ bool withInAppAlert = true;
 
 #pragma mark - XGPushDelegate
 - (void)xgPushDidFinishStart:(BOOL)isSuccess error:(NSError *)error {
-    NSLog(@"%s, result %@, error %@", __FUNCTION__, isSuccess?@"OK":@"NO", error);
+    if ([XGPush defaultManager].isEnableDebug) {
+        NSLog(@"%s, result %@, error %@", __FUNCTION__, isSuccess?@"OK":@"NO", error);
+    }
 }
 
 - (void)xgPushDidFinishStop:(BOOL)isSuccess error:(NSError *)error {
@@ -339,7 +341,9 @@ bool withInAppAlert = true;
         completionHandler(UIBackgroundFetchResultNewData);
     }
     
-    NSLog(@"[TPNS Demo] receive notification %@", notificationDic);
+    if ([XGPush defaultManager].isEnableDebug) {
+        NSLog(@"[TPNS Demo] receive notification %@", notificationDic);
+    }
     
     NSDictionary *tpnsInfo = notificationDic[@"xg"];
     NSNumber *msgType = tpnsInfo[@"msgtype"];
@@ -364,7 +368,9 @@ bool withInAppAlert = true;
         notificationDic = response;
     }
     
-    NSLog(@"[TPNS Demo] click notification %@", notificationDic);
+    if ([XGPush defaultManager].isEnableDebug) {
+        NSLog(@"[TPNS Demo] click notification %@", notificationDic);
+    }
     
     [_channel invokeMethod:@"xgPushClickAction" arguments:notificationDic];
     completionHandler();
@@ -376,6 +382,14 @@ bool withInAppAlert = true;
         argumentDescribe = [NSString stringWithFormat:@"设置角标失败：%@",error.description];
     }
     [_channel invokeMethod:@"xgPushDidSetBadge" arguments:argumentDescribe];
+}
+
+/// TPNS长链接连接成功，仅iOS
+- (void)xgPushNetworkConnected {
+    if ([XGPush defaultManager].isEnableDebug) {
+        [_channel invokeMethod:@"xgPushNetworkConnected" arguments:@"TPNS长链接已建立"];
+        NSLog(@"TPNS connection connected."); 
+    }
 }
 
 

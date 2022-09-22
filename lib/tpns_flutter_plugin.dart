@@ -72,6 +72,9 @@ class XgFlutterPlugin {
   /// 通知点击回调
   EventHandlerMap? _xgPushClickAction;
 
+  /// TPNS长链接建立回调，仅iOS
+  EventHandler? _xgPushNetworkConnected;
+
   /// 设置角标回调仅iOS
   EventHandler? _xgPushDidSetBadge;
 
@@ -429,6 +432,7 @@ class XgFlutterPlugin {
     EventHandler? unRegistered,
     EventHandlerMap? onReceiveNotificationResponse,
     EventHandlerMap? onReceiveMessage,
+    EventHandler? xgPushNetworkConnected,
     EventHandler? xgPushDidSetBadge,
     EventHandler? xgPushDidBindWithIdentifier,
     EventHandler? xgPushDidUnbindWithIdentifier,
@@ -441,6 +445,7 @@ class XgFlutterPlugin {
     _unRegistered = unRegistered;
     _onReceiveNotificationResponse = onReceiveNotificationResponse;
     _onReceiveMessage = onReceiveMessage;
+    _xgPushNetworkConnected = xgPushNetworkConnected;
     _xgPushDidSetBadge = xgPushDidSetBadge;
     _xgPushDidBindWithIdentifier = xgPushDidBindWithIdentifier;
     _xgPushDidUnbindWithIdentifier = xgPushDidUnbindWithIdentifier;
@@ -463,6 +468,8 @@ class XgFlutterPlugin {
             call.arguments.cast<String, dynamic>());
       case "onReceiveMessage":
         return _onReceiveMessage!(call.arguments.cast<String, dynamic>());
+      case "xgPushNetworkConnected":
+        return _xgPushNetworkConnected!(call.arguments);
       case "xgPushDidSetBadge":
         return _xgPushDidSetBadge!(call.arguments);
       case "xgPushDidBindWithIdentifier":
