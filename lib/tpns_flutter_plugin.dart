@@ -427,8 +427,8 @@ class XgFlutterPlugin {
 /* ======信鸽callback====== */
 
   void addEventHandler({
-    EventHandler? onRegisteredDeviceToken,
-    EventHandler? onRegisteredDone,
+    EventHandler? onRegisteredDeviceToken,  /// TPNS注册失败回调
+    EventHandler? onRegisteredDone,  /// TPNS注册成功回调
     EventHandler? unRegistered,
     EventHandlerMap? onReceiveNotificationResponse,
     EventHandlerMap? onReceiveMessage,

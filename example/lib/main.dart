@@ -35,9 +35,11 @@ class _MyAppState extends State<MyApp> {
 
     /// 添加回调事件
     tpush.addEventHandler(
+      /// TPNS注册失败会走此回调
       onRegisteredDeviceToken: (String msg) async {
         print("flutter onRegisteredDeviceToken: $msg");
       },
+      /// TPNS注册成功会走此回调
       onRegisteredDone: (String msg) async {
         print("flutter onRegisteredDone: $msg");
         _showAlert("注册成功");
