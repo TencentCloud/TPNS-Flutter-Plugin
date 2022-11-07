@@ -1,3 +1,7 @@
+## V1.2.0
+* Use TPNS iOS SDK 1.3.9.2
+* Change API Doc
+
 ## V1.1.9
 * Add iOS CallBack xgPushNetworkConnected
 
