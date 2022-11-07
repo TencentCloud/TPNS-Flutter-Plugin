@@ -155,7 +155,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.1.9"
+    version: "1.2.0"
   vector_math:
     dependency: transitive
     description:
