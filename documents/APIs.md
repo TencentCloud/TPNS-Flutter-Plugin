@@ -233,7 +233,7 @@
     _onRegisteredDone   数据类型 String para: 注册成功或者失败信息
 ```
 
-#### 5 注册完成获取token回调(只有当注册成功获取到token时才会回调)
+#### 5 注册失败回调
 ```dart
     _onRegisteredDeviceToken   数据类型 String para: token
 ```

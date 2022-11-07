@@ -81,7 +81,7 @@ public interface Extras {
 
 
     //调用Flutter的函数名称
-    String ON_REGISTERED_DEVICE_TOKEN = "onRegisteredDeviceToken"; //获取设备token回调（在注册成功里面获取的）
+    String ON_REGISTERED_DEVICE_TOKEN = "onRegisteredDeviceToken"; //注册失败回调
     String ON_REGISTERED_DONE = "onRegisteredDone";    //注册成功回调
     String UN_REGISTERED = "unRegistered";     //反注册回调
     String ON_RECEIVE_NOTIFICATION_RESPONSE = "onReceiveNotificationResponse";   //收到通知
