@@ -386,8 +386,8 @@ bool withInAppAlert = true;
 
 /// TPNS长链接连接成功，仅iOS
 - (void)xgPushNetworkConnected {
+    [_channel invokeMethod:@"xgPushNetworkConnected" arguments:@"TPNS长链接已建立"];
     if ([XGPush defaultManager].isEnableDebug) {
-        [_channel invokeMethod:@"xgPushNetworkConnected" arguments:@"TPNS长链接已建立"];
         NSLog(@"TPNS connection connected."); 
     }
 }
