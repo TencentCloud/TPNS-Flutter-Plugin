@@ -845,5 +845,7 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
 
 
     override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+        Log.i("| XgpushpPlugin | Flutter | Android | ", "methodChannel onDetachedFromEngine XgFlutterPlugin")
+        Log.i("| XgpushpPlugin | Flutter | Android | ", "onDetachedFromEngine instance = " + instance)
     }
 }

@@ -440,6 +440,7 @@ class XgFlutterPlugin {
     EventHandler? xgPushDidClearAllIdentifiers,
     EventHandlerMap? xgPushClickAction,
   }) {
+    print("XgFlutterPlugin call addEventHandler");
     _onRegisteredDeviceToken = onRegisteredDeviceToken;
     _onRegisteredDone = onRegisteredDone;
     _unRegistered = unRegistered;
