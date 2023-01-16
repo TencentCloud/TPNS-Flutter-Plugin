@@ -1,3 +1,6 @@
+## V1.2.1
+* Use TPNS iOS SDK 1.3.9.3
+
 ## V1.2.0
 * Use TPNS iOS SDK 1.3.9.2
 * Change API Doc
