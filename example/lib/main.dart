@@ -58,11 +58,11 @@ class _MyAppState extends State<MyApp> {
         print("flutter xgPushNetworkConnected: $msg");
         /// 建议在此同步角标到TPNS后台
         /// tpush.setBadge(0);
+        /// 同步到TPNS后台的同时，更新本地应用角标数
+        /// tpush.setAppBadge(0);
       },
       xgPushDidSetBadge: (String msg) async {
         print("flutter xgPushDidSetBadge: $msg");
-        /// 在此可设置应用角标
-        /// tpush.setAppBadge(0);
         _showAlert(msg);
       },
       xgPushDidBindWithIdentifier: (String msg) async {
