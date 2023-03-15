@@ -515,6 +515,7 @@ bool withInAppAlert = true;
     }
     }
     if (remoteNotification && [remoteNotification isKindOfClass:[NSDictionary class]]) {
+        [XGPush defaultManager].launchOptions = [launchOptions mutableCopy];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self->_channel invokeMethod:@"xgPushClickAction" arguments:remoteNotification];
         });
