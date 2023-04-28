@@ -1,6 +1,6 @@
 name: tpns_flutter_plugin
 description: TPNS flutter plugin
-version: 1.2.2
+version: 1.2.3
 homepage: https://github.com/TencentCloud/TPNS-Flutter-Plugin
 
 environment:
