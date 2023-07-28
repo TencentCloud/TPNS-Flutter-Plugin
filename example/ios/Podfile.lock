@@ -1,9 +1,9 @@
 PODS:
   - Flutter (1.0.0)
-  - TPNS-iOS (1.3.9.6)
-  - tpns_flutter_plugin (1.2.5):
+  - TPNS-iOS (1.3.9.7)
+  - tpns_flutter_plugin (1.2.6):
     - Flutter
-    - TPNS-iOS (= 1.3.9.6)
+    - TPNS-iOS (= 1.3.9.7)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
@@ -21,8 +21,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
-  TPNS-iOS: 6b57bc5d5794bc17b8d0923a1c3ef009e69fd41f
-  tpns_flutter_plugin: 1299b2b968f37a1a123e136674e3a3eec9047c72
+  TPNS-iOS: e13778e709e9ac84fe512476c6f4983f0011f7fe
+  tpns_flutter_plugin: d9fa7fdf77de4e1ee3b5a9cd61fd92eecb0e9b08
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
