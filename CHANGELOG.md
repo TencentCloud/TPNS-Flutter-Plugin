@@ -1,3 +1,7 @@
+## V1.2.7
+* Use TPNS iOS SDK 1.3.9.8
+* configureClusterDomainName api support Android
+
 ## V1.2.6
 * Use TPNS iOS SDK 1.3.9.7
 
