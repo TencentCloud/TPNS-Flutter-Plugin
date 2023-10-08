@@ -32,8 +32,10 @@ public interface Extras {
     String ENABLE_LIGHTS = "enableLights";
     String ENABLE_SOUND = "enableSound";
     String SOUND_FILE_NAME = "soundFileName";
+    String ADDR = "addr";
 
     //Flutter调用native的函数名称
+    String FOR_FLUTTER_METHOD_SET_SERVERSUFFIX = "setServerSuffix";
     String FOR_FLUTTER_METHOD_REG_PUSH = "regPush";
     String FOR_FLUTTER_METHOD_UNREGISTER_PUSH = "stopXg";
     String FOR_FLUTTER_METHOD_SET_TAG = "setXgTag";

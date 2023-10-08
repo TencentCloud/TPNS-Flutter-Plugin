@@ -97,6 +97,11 @@ class XgAndroidApi {
     _channel?.invokeMethod('regPush');
   }
 
+   /// 设置接入点域名
+  void setServerSuffix({String? serverAddr}) {
+    _channel?.invokeMethod('setServerSuffix', {'addr': serverAddr});
+  }
+
   ///开启debug模式
   ///debug 是否为debug模式 默认不是
   void setEnableDebug({bool? debug}) {

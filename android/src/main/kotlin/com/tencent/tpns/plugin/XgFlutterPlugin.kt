@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.annotation.NonNull
 import com.tencent.android.tpush.XGIOperateCallback
 import com.tencent.android.tpush.XGPushConfig
+import com.tencent.tpns.baseapi.XGApiConfig
 import com.tencent.android.tpush.XGPushManager
 import com.tencent.android.tpush.XGPushConstants
 import io.flutter.embedding.engine.plugins.FlutterPlugin
@@ -119,6 +120,7 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
             Extras.FOR_FLUTTER_METHOD_IS_360_ROM -> is360Rom(p0, p1)
             Extras.FOR_FLUTTER_METHOD_ENABLE_DEBUG -> setEnableDebug(p0, p1)
             Extras.FOR_FLUTTER_METHOD_SET_HEADER_BEAT_INTERVAL_MS -> setHeartbeatIntervalMs(p0, p1)
+            Extras.FOR_FLUTTER_METHOD_SET_SERVERSUFFIX -> setServerSuffix(p0, p1)
         }
     }
 
@@ -137,6 +139,16 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
     fun toFlutterMethod(methodName: String, para: String) {
         Log.i(TAG, "调用Flutter=>${methodName}")
         MainHandler.getInstance().post { channel.invokeMethod(methodName, para) }
+    }
+
+    /**
+     * 设置接入域名
+     */
+    private fun setServerSuffix(call: MethodCall, result: MethodChannel.Result) {
+        val map = call.arguments<Map<String, String>>()
+        val addr = map[Extras.ADDR]
+        Log.i(TAG, "调用信鸽SDK-->setServerSuffix()-----addr=${addr}")
+        XGApiConfig.setServerSuffix(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext, addr);
     }
 
     /**
@@ -832,6 +844,7 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
         Log.i(TAG, "isMiuiRom===" + DeviceInfoUtil.isMiuiRom())
         result.success(DeviceInfoUtil.isMiuiRom())
     }
+
 
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {

@@ -123,6 +123,8 @@ class XgFlutterPlugin {
     if (Platform.isIOS) {
       _channel.invokeMethod('configureClusterDomainName',
           <String, dynamic>{'domainStr': domainStr});
+    } else {
+      xgApi.setServerSuffix(serverAddr:domainStr);
     }
   }
 
