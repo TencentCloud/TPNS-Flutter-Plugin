@@ -16,28 +16,16 @@
 ## 使用
 
 ### 集群域名配置(如果您的应用非广州集群请按照以下方法进行域名配置，广州集群请忽略)
+**说明** : 此接口V1.2.7开始支持安卓，若您插件版本>=1.2.7，建议您将原来的Manifest对应域名设置删除，以接口为准.
 #### 集群域名：
        中国上海：tpns.sh.tencent.com
        中国香港：tpns.hk.tencent.com
        新加坡：tpns.sgp.tencent.com
-- iOS端需要在注册方法startXg之前调用以下域名配置函数
+- 需要在注册方法startXg之前调用以下域名配置函数
   - domainStr 对应集群域名
 ```dart
       void configureClusterDomainName(String domainStr);
 ```
-- Android端需要在Manifest 文件 application 标签内添加以下元数据：
-
-```
-  <application>
-    // 其他安卓组件
-    <meta-data
-        android:name="XG_SERVER_SUFFIX"
-        android:value="其他地区域名" />
-  </application>
-```
-
-  
-      
 
 ###  iOS
 
