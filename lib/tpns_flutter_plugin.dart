@@ -142,6 +142,8 @@ class XgFlutterPlugin {
         'withInAppAlert': withInAppAlert,
       });
     } else {
+      xgApi.setAccessKey(accessKey:accessKey);
+      xgApi.setAccessId(accessId:accessId);
       xgApi.regPush();
     }
   }

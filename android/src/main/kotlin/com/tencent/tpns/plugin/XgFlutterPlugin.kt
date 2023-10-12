@@ -121,6 +121,8 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
             Extras.FOR_FLUTTER_METHOD_ENABLE_DEBUG -> setEnableDebug(p0, p1)
             Extras.FOR_FLUTTER_METHOD_SET_HEADER_BEAT_INTERVAL_MS -> setHeartbeatIntervalMs(p0, p1)
             Extras.FOR_FLUTTER_METHOD_SET_SERVERSUFFIX -> setServerSuffix(p0, p1)
+            Extras.FOR_FLUTTER_METHOD_SET_ACCESSID -> setAccessId(p0, p1)
+            Extras.FOR_FLUTTER_METHOD_SET_ACCESSKEY -> setAccessKey(p0, p1)
         }
     }
 
@@ -139,6 +141,26 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
     fun toFlutterMethod(methodName: String, para: String) {
         Log.i(TAG, "调用Flutter=>${methodName}")
         MainHandler.getInstance().post { channel.invokeMethod(methodName, para) }
+    }
+
+    /**
+     * 设置accessId
+     */
+    private fun setAccessId(call: MethodCall, result: MethodChannel.Result) {
+        val map = call.arguments<Map<String, String>>()
+        val accessId = map[Extras.ACCESSID] as String
+        val value = accessId.toLong();
+        Log.i(TAG, "调用信鸽SDK-->setAccessId()-----accessId=${value}")
+        XGPushConfig.setAccessId(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext, value);
+    }
+    /**
+     * 设置accessKey
+     */
+    private fun setAccessKey(call: MethodCall, result: MethodChannel.Result) {
+        val map = call.arguments<Map<String, String>>()
+        val accessKey = map[Extras.ACCESSKEY]
+        Log.i(TAG, "调用信鸽SDK-->setAccessKey()-----accessKey=${accessKey}")
+        XGPushConfig.setAccessKey(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext, accessKey);
     }
 
     /**

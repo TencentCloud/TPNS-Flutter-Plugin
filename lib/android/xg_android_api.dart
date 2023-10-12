@@ -102,6 +102,17 @@ class XgAndroidApi {
     _channel?.invokeMethod('setServerSuffix', {'addr': serverAddr});
   }
 
+   /// 设置accessid
+  void setAccessId({String? accessId}) {
+    _channel?.invokeMethod('setAccessId', {'accessId': accessId});
+  }
+
+ /// 设置accessKey
+  void setAccessKey({String? accessKey}) {
+    _channel?.invokeMethod('setAccessKey', {'accessKey': accessKey});
+  }
+
+
   ///开启debug模式
   ///debug 是否为debug模式 默认不是
   void setEnableDebug({bool? debug}) {

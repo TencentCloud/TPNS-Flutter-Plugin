@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'ios/homeTest.dart';
 import 'package:tpns_flutter_plugin/tpns_flutter_plugin.dart';
+import 'dart:io';
 
 void main() => runApp(new MaterialApp(
       home: new MyApp(),
       debugShowCheckedModeBanner: false,
+
     ));
 
 class MyApp extends StatefulWidget {
@@ -95,7 +97,11 @@ class _MyAppState extends State<MyApp> {
 
     /// 启动TPNS服务
     /// 注意：为了不影响回调效果，建议在应用启动方法优先添加回调以及调用TPNS注册方法
-    tpush.startXg("1600007893", "IX4BGYYG8L4L");
+    if (Platform.isIOS) {
+      tpush.startXg("1600007893", "IX4BGYYG8L4L");
+    } else {
+      tpush.startXg("1500004343", "ANCVHDQ0DO3E");
+    }
   }
 
   void _showAlert(String title) {
