@@ -68,18 +68,26 @@ class _MyAppState extends State<MyApp> {
         print("flutter xgPushDidSetBadge: $msg");
         _showAlert(msg);
       },
+
+      /// V1.2.8开始返回类型由String->Map，新增code及type标识！
       xgPushDidBindWithIdentifier: (Map<String, dynamic> result) async {
         print("flutter xgPushDidBindWithIdentifier: $result");
         _showAlert(result["msg"]);
       },
+
+      /// V1.2.8开始返回类型由String->Map，新增code及type标识！
       xgPushDidUnbindWithIdentifier: (Map<String, dynamic> result) async {
         print("flutter xgPushDidUnbindWithIdentifier: $result");
         _showAlert(result["msg"]);
       },
+
+      /// V1.2.8开始返回类型由String->Map，新增code及type标识！
       xgPushDidUpdatedBindedIdentifier: (Map<String, dynamic> result) async {
         print("flutter xgPushDidUpdatedBindedIdentifier: $result");
         _showAlert(result["msg"]);
       },
+
+      /// V1.2.8开始返回类型由String->Map，新增code及type标识！
       xgPushDidClearAllIdentifiers: (Map<String, dynamic> result) async {
         print("flutter xgPushDidClearAllIdentifiers: $result");
         _showAlert(result["msg"]);

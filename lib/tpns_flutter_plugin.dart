@@ -78,16 +78,16 @@ class XgFlutterPlugin {
   /// 设置角标回调仅iOS
   EventHandler? _xgPushDidSetBadge;
 
-  /// 绑定账号和标签回调
+  /// 绑定账号/标签/用户属性回调，V1.2.8开始返回类型由String->Map，新增code及type标识！
   EventHandlerMap? _xgPushDidBindWithIdentifier;
 
-  /// 解绑账号和标签回调
+  /// 解绑账号/标签/用户属性回调，V1.2.8开始返回类型由String->Map，新增code及type标识！
   EventHandlerMap? _xgPushDidUnbindWithIdentifier;
 
-  /// 更新标签回调
+  /// 更新标签/用户属性回调，V1.2.8开始返回类型由String->Map，新增code及type标识！
   EventHandlerMap? _xgPushDidUpdatedBindedIdentifier;
 
-  /// 清除所有账号和标签回调
+  /// 清除所有账号/标签/用户属性回调，V1.2.8开始返回类型由String->Map，新增code及type标识！
   EventHandlerMap? _xgPushDidClearAllIdentifiers;
 
   /// 获取sdk版本号

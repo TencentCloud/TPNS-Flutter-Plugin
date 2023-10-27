@@ -39,6 +39,7 @@
 #### 5. 设置账号
       /// account 账号标识
       /// accountType 账号类型枚举
+      /// note 同一账号类型对应一个唯一账号，覆盖操作，多账号体系请使用不同账号类型
 ```dart
       void setAccount(String account, AccountType accountType);
 ```
@@ -152,7 +153,8 @@
    _unRegistered   数据类型 String para:  注销成功或者失败信息
 ```
 
-#### 7 绑定账号和标签回调
+#### 7 绑定账号/标签/用户属性回调
+**说明**V1.2.8开始返回类型由String->Map，新增code及type标识！
 ```dart
    _xgPushDidBindWithIdentifier   数据类型 Map<String, Object> para: 
         key: 
@@ -161,7 +163,8 @@
             msg: String类型，提示信息
 ```
 
-#### 8 解绑账号和标签回调
+#### 8 解绑账号/标签/用户属性回调
+**说明**V1.2.8开始返回类型由String->Map，新增code及type标识！
 ```dart
    _xgPushDidUnbindWithIdentifier   数据类型 Map<String, Object> para: 
         key: 
@@ -170,7 +173,18 @@
             msg: String类型，提示信息
 ```
 
-#### 9 清除所有账号和标签回调
+#### 9 更新标签/用户属性回调
+**说明**V1.2.8开始返回类型由String->Map，新增code及type标识！
+```dart
+   _xgPushDidUpdatedBindedIdentifier   数据类型 Map<String, Object> para: 
+        key: 
+            code:int类型，操作结果，0代表成功
+            type: String类型，操作类型，取值为tag/attributes
+            msg: String类型，提示信息
+```
+
+#### 10 清除所有账号/标签/用户属性回调
+**说明**V1.2.8开始返回类型由String->Map，新增code及type标识！
 ```dart
    _xgPushDidClearAllIdentifiers   数据类型 Map<String, Object> para:
         key: 
