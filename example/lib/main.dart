@@ -8,7 +8,6 @@ import 'dart:io';
 void main() => runApp(new MaterialApp(
       home: new MyApp(),
       debugShowCheckedModeBanner: false,
-
     ));
 
 class MyApp extends StatefulWidget {
@@ -41,6 +40,7 @@ class _MyAppState extends State<MyApp> {
       onRegisteredDeviceToken: (String msg) async {
         print("flutter onRegisteredDeviceToken: $msg");
       },
+
       /// TPNS注册成功会走此回调
       onRegisteredDone: (String msg) async {
         print("flutter onRegisteredDone: $msg");
@@ -58,6 +58,7 @@ class _MyAppState extends State<MyApp> {
       },
       xgPushNetworkConnected: (String msg) async {
         print("flutter xgPushNetworkConnected: $msg");
+
         /// 建议在此同步角标到TPNS后台
         /// tpush.setBadge(0);
         /// 同步到TPNS后台的同时，更新本地应用角标数
@@ -67,21 +68,21 @@ class _MyAppState extends State<MyApp> {
         print("flutter xgPushDidSetBadge: $msg");
         _showAlert(msg);
       },
-      xgPushDidBindWithIdentifier: (String msg) async {
-        print("flutter xgPushDidBindWithIdentifier: $msg");
-        _showAlert(msg);
+      xgPushDidBindWithIdentifier: (Map<String, dynamic> result) async {
+        print("flutter xgPushDidBindWithIdentifier: $result");
+        _showAlert(result["msg"]);
       },
-      xgPushDidUnbindWithIdentifier: (String msg) async {
-        print("flutter xgPushDidUnbindWithIdentifier: $msg");
-        _showAlert(msg);
+      xgPushDidUnbindWithIdentifier: (Map<String, dynamic> result) async {
+        print("flutter xgPushDidUnbindWithIdentifier: $result");
+        _showAlert(result["msg"]);
       },
-      xgPushDidUpdatedBindedIdentifier: (String msg) async {
-        print("flutter xgPushDidUpdatedBindedIdentifier: $msg");
-        _showAlert(msg);
+      xgPushDidUpdatedBindedIdentifier: (Map<String, dynamic> result) async {
+        print("flutter xgPushDidUpdatedBindedIdentifier: $result");
+        _showAlert(result["msg"]);
       },
-      xgPushDidClearAllIdentifiers: (String msg) async {
-        print("flutter xgPushDidClearAllIdentifiers: $msg");
-        _showAlert(msg);
+      xgPushDidClearAllIdentifiers: (Map<String, dynamic> result) async {
+        print("flutter xgPushDidClearAllIdentifiers: $result");
+        _showAlert(result["msg"]);
       },
       xgPushClickAction: (Map<String, dynamic> msg) async {
         print("flutter xgPushClickAction $msg");

@@ -119,6 +119,68 @@
   void clearAttributes();
 ```
 
+
+##  回调接口说明
+
+#### 1 静默消息(iOS)/透传消息(Android)回调
+```dart
+    _onReceiveMessage 数据类型 Map<String, Object> para: iOS/Android返回不同的消息体，以双端返回kv为准
+```
+
+#### 2 收到通知消息回调
+```dart
+    _onReceiveNotificationResponse    数据类型 Map<String, Object> para: iOS/Android返回不同的消息体，以双端返回kv为准
+```
+
+#### 3 通知点击回调
+```dart
+    _xgPushClickAction   数据类型 Map<String, Object> para: iOS/Android返回不同的消息体，以双端返回kv为准
+```
+
+#### 4 注册成功回调
+```dart
+    _onRegisteredDone   数据类型 String para: 注册成功信息
+```
+
+#### 5 注册失败回调
+```dart
+    _onRegisteredDeviceToken   数据类型 String para: xgToken，注册失败如果有xgToken则返回
+```
+
+#### 6 注销完成的回调
+```dart
+   _unRegistered   数据类型 String para:  注销成功或者失败信息
+```
+
+#### 7 绑定账号和标签回调
+```dart
+   _xgPushDidBindWithIdentifier   数据类型 Map<String, Object> para: 
+        key: 
+            code:int类型，操作结果，0代表成功
+            type: String类型，操作类型，取值为account/tag/attributes
+            msg: String类型，提示信息
+```
+
+#### 8 解绑账号和标签回调
+```dart
+   _xgPushDidUnbindWithIdentifier   数据类型 Map<String, Object> para: 
+        key: 
+            code:int类型，操作结果，0代表成功
+            type: String类型，操作类型，取值为account/tag/attributes
+            msg: String类型，提示信息
+```
+
+#### 9 清除所有账号和标签回调
+```dart
+   _xgPushDidClearAllIdentifiers   数据类型 Map<String, Object> para:
+        key: 
+            code:int类型，操作结果，0代表成功
+            type: String类型，操作类型，取值为account/tag/attributes
+            msg: String类型，提示信息
+```
+
+
+
 ## 安卓端 XgAndroidApi 接口说明
 
 > 说明：XgAndroidApi 为针对安卓独立接口的内部再次封装，可以通过 `XgFlutterPlugin.xgApi` 直接访问，例如：
@@ -187,72 +249,3 @@
      resetBadgeNum()
 ```
 
-##  安卓端回调接口说明
-
-#### 1 透传消息、回调接口
-```dart
-    _onReceiveMessage 数据类型 Map<String, Object> para:
-        key:
-            msgId: 推送任务ID
-            title: 标题
-            content: 消息文本
-            customMessage: 自定义 key-value
-            pushChannel: 推送通道
-```
-
-#### 2 收到通知消息回调
-```dart
-    _onReceiveNotificationResponse    数据类型 Map<String, Object> para = new HashMap<>()
-         key: 
-             title: 标题
-             content: 消息文本
-             customMessage: 自定义 key-value
-             pushChannel: 推送通道
-             notifactionId: 通知ID
-             msgId: 推送任务ID
-             activity: 推送点击跳转目标
-             notifactionActionType: 推送点击跳转方式
-```
-
-#### 3 通知点击回调
-```dart
-    _xgPushClickAction   数据类型 Map<String, Object> para:
-        key: 
-            title:标题
-            content: 消息文本
-            customMessage: 自定义 key-value
-            msgId: 推送任务ID
-            activityName: 推送点击跳转目标
-            notifactionActionType: 推送点击跳转方式
-            actionType: 推送被点击或清除，0：消息被点击，2：消息被清除
-```
-
-#### 4 注册完成回调
-```dart
-    _onRegisteredDone   数据类型 String para: 注册成功或者失败信息
-```
-
-#### 5 注册失败回调
-```dart
-    _onRegisteredDeviceToken   数据类型 String para: token
-```
-
-#### 6 注销完成的回调
-```dart
-   _unRegistered   数据类型 String para:  操作成功或者失败信息
-```
-
-#### 7 绑定账号和标签回调
-```dart
-   _xgPushDidBindWithIdentifier   数据类型 String para:  操作成功或者失败信息
-```
-
-#### 8 解绑账号和标签回调
-```dart
-   _xgPushDidUnbindWithIdentifier   数据类型 String para:  操作成功或者失败信息
-```
-
-#### 9 清除所有账号和标签回调
-```dart
-   _xgPushDidClearAllIdentifiers   数据类型 String para:  操作成功或者失败信息
-```

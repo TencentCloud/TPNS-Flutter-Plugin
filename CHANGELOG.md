@@ -1,3 +1,6 @@
+## V1.2.8
+* Standard iOS/Android callback  
+
 ## V1.2.7
 * Use TPNS Android SDK 1.4.0.1
 * Use TPNS iOS SDK 1.3.9.8

@@ -79,16 +79,16 @@ class XgFlutterPlugin {
   EventHandler? _xgPushDidSetBadge;
 
   /// 绑定账号和标签回调
-  EventHandler? _xgPushDidBindWithIdentifier;
+  EventHandlerMap? _xgPushDidBindWithIdentifier;
 
   /// 解绑账号和标签回调
-  EventHandler? _xgPushDidUnbindWithIdentifier;
+  EventHandlerMap? _xgPushDidUnbindWithIdentifier;
 
-  /// 更新账号和标签回调
-  EventHandler? _xgPushDidUpdatedBindedIdentifier;
+  /// 更新标签回调
+  EventHandlerMap? _xgPushDidUpdatedBindedIdentifier;
 
   /// 清除所有账号和标签回调
-  EventHandler? _xgPushDidClearAllIdentifiers;
+  EventHandlerMap? _xgPushDidClearAllIdentifiers;
 
   /// 获取sdk版本号
   static Future<String?> get xgSdkVersion async {
@@ -124,7 +124,7 @@ class XgFlutterPlugin {
       _channel.invokeMethod('configureClusterDomainName',
           <String, dynamic>{'domainStr': domainStr});
     } else {
-      xgApi.setServerSuffix(serverAddr:domainStr);
+      xgApi.setServerSuffix(serverAddr: domainStr);
     }
   }
 
@@ -142,8 +142,8 @@ class XgFlutterPlugin {
         'withInAppAlert': withInAppAlert,
       });
     } else {
-      xgApi.setAccessKey(accessKey:accessKey);
-      xgApi.setAccessId(accessId:accessId);
+      xgApi.setAccessKey(accessKey: accessKey);
+      xgApi.setAccessId(accessId: accessId);
       xgApi.regPush();
     }
   }
@@ -431,17 +431,21 @@ class XgFlutterPlugin {
 /* ======信鸽callback====== */
 
   void addEventHandler({
-    EventHandler? onRegisteredDeviceToken,  /// TPNS注册失败回调
-    EventHandler? onRegisteredDone,  /// TPNS注册成功回调
+    EventHandler? onRegisteredDeviceToken,
+
+    /// TPNS注册失败回调
+    EventHandler? onRegisteredDone,
+
+    /// TPNS注册成功回调
     EventHandler? unRegistered,
     EventHandlerMap? onReceiveNotificationResponse,
     EventHandlerMap? onReceiveMessage,
     EventHandler? xgPushNetworkConnected,
     EventHandler? xgPushDidSetBadge,
-    EventHandler? xgPushDidBindWithIdentifier,
-    EventHandler? xgPushDidUnbindWithIdentifier,
-    EventHandler? xgPushDidUpdatedBindedIdentifier,
-    EventHandler? xgPushDidClearAllIdentifiers,
+    EventHandlerMap? xgPushDidBindWithIdentifier,
+    EventHandlerMap? xgPushDidUnbindWithIdentifier,
+    EventHandlerMap? xgPushDidUpdatedBindedIdentifier,
+    EventHandlerMap? xgPushDidClearAllIdentifiers,
     EventHandlerMap? xgPushClickAction,
   }) {
     _onRegisteredDeviceToken = onRegisteredDeviceToken;
@@ -477,13 +481,17 @@ class XgFlutterPlugin {
       case "xgPushDidSetBadge":
         return _xgPushDidSetBadge!(call.arguments);
       case "xgPushDidBindWithIdentifier":
-        return _xgPushDidBindWithIdentifier!(call.arguments);
+        return _xgPushDidBindWithIdentifier!(
+            call.arguments.cast<String, dynamic>());
       case "xgPushDidUnbindWithIdentifier":
-        return _xgPushDidUnbindWithIdentifier!(call.arguments);
+        return _xgPushDidUnbindWithIdentifier!(
+            call.arguments.cast<String, dynamic>());
       case "xgPushDidUpdatedBindedIdentifier":
-        return _xgPushDidUpdatedBindedIdentifier!(call.arguments);
+        return _xgPushDidUpdatedBindedIdentifier!(
+            call.arguments.cast<String, dynamic>());
       case "xgPushDidClearAllIdentifiers":
-        return _xgPushDidClearAllIdentifiers!(call.arguments);
+        return _xgPushDidClearAllIdentifiers!(
+            call.arguments.cast<String, dynamic>());
       case "xgPushClickAction":
         return _xgPushClickAction!(call.arguments.cast<String, dynamic>());
       default:

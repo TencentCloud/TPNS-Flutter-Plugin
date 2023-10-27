@@ -398,57 +398,79 @@ bool withInAppAlert = true;
 /**===============================账号和标签回调，V1.1.5新增===============================*/
 
 - (void)xgPushDidUpsertAccountsByDict:(NSDictionary *)accountsDict error:(NSError *)error {
-    NSString *resultStr = error == nil ? @"设置账号成功" : [NSString stringWithFormat:@"设置账号失败，error:%@", error.description];
-    [_channel invokeMethod:@"xgPushDidBindWithIdentifier" arguments:resultStr];
+    NSString *msg = error == nil ? @"bindAccount successful" : [NSString stringWithFormat:@"bindAccount fail，error:%@", error.description];
+    NSNumber *code = error == nil ? @(0) : @(error.code);
+    NSDictionary *resultDic = @{@"code":code, @"type":@"account", @"msg":msg};
+    [_channel invokeMethod:@"xgPushDidBindWithIdentifier" arguments:resultDic];
 }
 - (void)xgPushDidDelAccountsByKeys:(NSSet<NSNumber *> *)accountsKeys error:(NSError *)error {
-    NSString *resultStr = error == nil ? @"删除账号成功" : [NSString stringWithFormat:@"删除账号失败，error:%@", error.description];
-    [_channel invokeMethod:@"xgPushDidUnbindWithIdentifier" arguments:resultStr];
+    NSString *msg = error == nil ? @"delAccountsByKeys successful" : [NSString stringWithFormat:@"delAccountsByKeys fail，error:%@", error.description];
+    NSNumber *code = error == nil ? @(0) : @(error.code);
+    NSDictionary *resultDic = @{@"code":code, @"type":@"account", @"msg":msg};
+    [_channel invokeMethod:@"xgPushDidUnbindWithIdentifier" arguments:resultDic];
 }
 
 - (void)xgPushDidClearAccountsError:(NSError *)error {
-    NSString *resultStr = error == nil ? @"清除账号成功" : [NSString stringWithFormat:@"清除账号失败，error:%@", error.description];
-    [_channel invokeMethod:@"xgPushDidClearAllIdentifiers" arguments:resultStr];
+    NSString *msg = error == nil ? @"clearAccounts successful" : [NSString stringWithFormat:@"clearAccounts fail，error:%@", error.description];
+    NSNumber *code = error == nil ? @(0) : @(error.code);
+    NSDictionary *resultDic = @{@"code":code, @"type":@"account", @"msg":msg};
+    [_channel invokeMethod:@"xgPushDidClearAllIdentifiers" arguments:resultDic];
 }
 
 - (void)xgPushDidAppendTags:(NSArray<NSString *> *)tags error:(NSError *)error {
-    NSString *resultStr = error == nil ? @"设置标签成功" : [NSString stringWithFormat:@"设置标签失败，error:%@", error.description];
-    [_channel invokeMethod:@"xgPushDidBindWithIdentifier" arguments:resultStr];
+    NSString *msg = error == nil ? @"appendTags successful" : [NSString stringWithFormat:@"appendTags fail，error:%@", error.description];
+    NSNumber *code = error == nil ? @(0) : @(error.code);
+    NSDictionary *resultDic = @{@"code":code, @"type":@"tag", @"msg":msg};
+    [_channel invokeMethod:@"xgPushDidBindWithIdentifier" arguments:resultDic];
 }
 - (void)xgPushDidDelTags:(NSArray<NSString *> *)tags error:(NSError *)error {
-    NSString *resultStr = error == nil ? @"删除标签成功" : [NSString stringWithFormat:@"删除标签失败，error:%@", error.description];
-    [_channel invokeMethod:@"xgPushDidUnbindWithIdentifier" arguments:resultStr];
+    NSString *msg = error == nil ? @"delTags successful" : [NSString stringWithFormat:@"delTags fail，error:%@", error.description];
+    NSNumber *code = error == nil ? @(0) : @(error.code);
+    NSDictionary *resultDic = @{@"code":code, @"type":@"tag", @"msg":msg};
+    [_channel invokeMethod:@"xgPushDidUnbindWithIdentifier" arguments:resultDic];
 }
 - (void)xgPushDidClearAndAppendTags:(NSArray<NSString *> *)tags error:(NSError *)error {
-    NSString *resultStr = error == nil ? @"更新标签成功" : [NSString stringWithFormat:@"更新标签失败，error:%@", error.description];
-    [_channel invokeMethod:@"xgPushDidUpdatedBindedIdentifier" arguments:resultStr];
+    NSString *msg = error == nil ? @"clearAndAppendTags successful" : [NSString stringWithFormat:@"clearAndAppendTags fail，error:%@", error.description];
+    NSNumber *code = error == nil ? @(0) : @(error.code);
+    NSDictionary *resultDic = @{@"code":code, @"type":@"tag", @"msg":msg};
+    [_channel invokeMethod:@"xgPushDidUpdatedBindedIdentifier" arguments:resultDic];
 }
 
 - (void)xgPushDidClearTagsError:(NSError *)error {
-    NSString *resultStr = error == nil ? @"清除标签成功" : [NSString stringWithFormat:@"清除标签失败，error:%@", error.description];
-    [_channel invokeMethod:@"xgPushDidClearAllIdentifiers" arguments:resultStr];
+    NSString *msg = error == nil ? @"clearTags successful" : [NSString stringWithFormat:@"clearTags fail，error:%@", error.description];
+    NSNumber *code = error == nil ? @(0) : @(error.code);
+    NSDictionary *resultDic = @{@"code":code, @"type":@"tag", @"msg":msg};
+    [_channel invokeMethod:@"xgPushDidClearAllIdentifiers" arguments:resultDic];
 }
 
 /**===============================用户属性回调，V1.1.5新增===============================*/
 
 - (void)xgPushDidUpsertAttributes:(NSDictionary *)attributes invalidKeys:(NSArray *)keys error:(NSError *)error {
-    NSString *resultStr = error == nil ? @"设置用户属性成功" : [NSString stringWithFormat:@"设置用户属性失败，error:%@", error.description];
-    [_channel invokeMethod:@"xgPushDidBindWithIdentifier" arguments:resultStr];
+    NSString *msg = error == nil ? @"upsertAttributes successful" : [NSString stringWithFormat:@"upsertAttributes fail，error:%@", error.description];
+    NSNumber *code = error == nil ? @(0) : @(error.code);
+    NSDictionary *resultDic = @{@"code":code, @"type":@"attributes", @"msg":msg};
+    [_channel invokeMethod:@"xgPushDidBindWithIdentifier" arguments:resultDic];
 }
 
 - (void)xgPushDidDelAttributeKeys:(NSSet *)attributeKeys invalidKeys:(NSArray *)keys error:(NSError *)error {
-    NSString *resultStr = error == nil ? @"删除用户属性成功" : [NSString stringWithFormat:@"删除用户属性失败，error:%@", error.description];
-    [_channel invokeMethod:@"xgPushDidUnbindWithIdentifier" arguments:resultStr];
+    NSString *msg = error == nil ? @"delAttributeKeys successful" : [NSString stringWithFormat:@"delAttributeKeys fail，error:%@", error.description];
+    NSNumber *code = error == nil ? @(0) : @(error.code);
+    NSDictionary *resultDic = @{@"code":code, @"type":@"attributes", @"msg":msg};
+    [_channel invokeMethod:@"xgPushDidUnbindWithIdentifier" arguments:resultDic];
 }
 
 - (void)xgPushDidClearAndAppendAttributes:(NSDictionary *)attributes invalidKeys:(NSArray *)keys error:(NSError *)error {
-    NSString *resultStr = error == nil ? @"更新用户属性成功" : [NSString stringWithFormat:@"更新用户属性失败，error:%@", error.description];
-    [_channel invokeMethod:@"xgPushDidUpdatedBindedIdentifier" arguments:resultStr];
+    NSString *msg = error == nil ? @"clearAndAppendAttributes successful" : [NSString stringWithFormat:@"clearAndAppendAttributes fail，error:%@", error.description];
+    NSNumber *code = error == nil ? @(0) : @(error.code);
+    NSDictionary *resultDic = @{@"code":code, @"type":@"attributes", @"msg":msg};
+    [_channel invokeMethod:@"xgPushDidUpdatedBindedIdentifier" arguments:resultDic];
 }
 
 - (void)xgPushDidClearAttributesWithError:(NSError *)error {
-    NSString *resultStr = error == nil ? @"清除用户属性成功" : [NSString stringWithFormat:@"清除用户属性失败，error:%@", error.description];
-    [_channel invokeMethod:@"xgPushDidClearAllIdentifiers" arguments:resultStr];
+    NSString *msg = error == nil ? @"clearAttributes successful" : [NSString stringWithFormat:@"clearAttributes fail，error:%@", error.description];
+    NSNumber *code = error == nil ? @(0) : @(error.code);
+    NSDictionary *resultDic = @{@"code":code, @"type":@"attributes", @"msg":msg};
+    [_channel invokeMethod:@"xgPushDidClearAllIdentifiers" arguments:resultDic];
 }
 
 
@@ -457,39 +479,51 @@ bool withInAppAlert = true;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-implementations"
 - (void)xgPushDidBindWithIdentifier:(NSString *)identifier type:(XGPushTokenBindType)type error:(NSError *)error {
-    NSString *argumentDescribe = type == XGPushTokenBindTypeAccount ? @"绑定账号" : @"绑定标签";
-    NSString *resultStr = error == nil ? @"成功" : [NSString stringWithFormat:@"失败，error:%@", error.description];
-    [_channel invokeMethod:@"xgPushDidBindWithIdentifier" arguments:[NSString stringWithFormat:@"%@%@", argumentDescribe, resultStr]];
+    NSString *msg = error == nil ? @"bindWithIdentifier successful" : [NSString stringWithFormat:@"bindWithIdentifier fail，error:%@", error.description];
+    NSNumber *code = error == nil ? @(0) : @(error.code);
+    NSString *typeStr = type == XGPushTokenBindTypeAccount ? @"account" : @"tag";
+    NSDictionary *resultDic = @{@"code":code, @"type":typeStr, @"msg":msg};
+    [_channel invokeMethod:@"xgPushDidBindWithIdentifier" arguments:resultDic];
 }
 
 - (void)xgPushDidUnbindWithIdentifier:(NSString *)identifier type:(XGPushTokenBindType)type error:(NSError *)error {
-    NSString *argumentDescribe = type == XGPushTokenBindTypeAccount ? @"解绑账号" : @"解绑标签";
-    NSString *resultStr = error == nil ? @"成功" : [NSString stringWithFormat:@"失败，error:%@", error.description];
-    [_channel invokeMethod:@"xgPushDidUnbindWithIdentifier" arguments:[NSString stringWithFormat:@"%@%@", argumentDescribe, resultStr]];
+    NSString *msg = error == nil ? @"unbindWithIdentifier successful" : [NSString stringWithFormat:@"unbindWithIdentifier fail，error:%@", error.description];
+    NSNumber *code = error == nil ? @(0) : @(error.code);
+    NSString *typeStr = type == XGPushTokenBindTypeAccount ? @"account" : @"tag";
+    NSDictionary *resultDic = @{@"code":code, @"type":typeStr, @"msg":msg};
+    [_channel invokeMethod:@"xgPushDidUnbindWithIdentifier" arguments:resultDic];
 }
 
 - (void)xgPushDidBindWithIdentifiers:(NSArray<NSString *> *)identifiers type:(XGPushTokenBindType)type error:(NSError *)error {
-    NSString *argumentDescribe = type == XGPushTokenBindTypeAccount ? @"绑定账号" : @"绑定标签";
-    NSString *resultStr = error == nil ? @"成功" : [NSString stringWithFormat:@"失败，error:%@", error.description];
-    [_channel invokeMethod:@"xgPushDidBindWithIdentifier" arguments:[NSString stringWithFormat:@"%@%@", argumentDescribe, resultStr]];
+    NSString *msg = error == nil ? @"bindWithIdentifiers successful" : [NSString stringWithFormat:@"bindWithIdentifiers fail，error:%@", error.description];
+    NSNumber *code = error == nil ? @(0) : @(error.code);
+    NSString *typeStr = type == XGPushTokenBindTypeAccount ? @"account" : @"tag";
+    NSDictionary *resultDic = @{@"code":code, @"type":typeStr, @"msg":msg};
+    [_channel invokeMethod:@"xgPushDidBindWithIdentifier" arguments:resultDic];
 }
 
 - (void)xgPushDidUnbindWithIdentifiers:(NSArray<NSString *> *)identifiers type:(XGPushTokenBindType)type error:(NSError *)error {
-    NSString *argumentDescribe = type == XGPushTokenBindTypeAccount ? @"解绑账号" : @"解绑标签";
-    NSString *resultStr = error == nil ? @"成功" : [NSString stringWithFormat:@"失败，error:%@", error.description];
-    [_channel invokeMethod:@"xgPushDidUnbindWithIdentifier" arguments:[NSString stringWithFormat:@"%@%@", argumentDescribe, resultStr]];
+    NSString *msg = error == nil ? @"unbindWithIdentifiers successful" : [NSString stringWithFormat:@"unbindWithIdentifiers fail，error:%@", error.description];
+    NSNumber *code = error == nil ? @(0) : @(error.code);
+    NSString *typeStr = type == XGPushTokenBindTypeAccount ? @"account" : @"tag";
+    NSDictionary *resultDic = @{@"code":code, @"type":typeStr, @"msg":msg};
+    [_channel invokeMethod:@"xgPushDidUnbindWithIdentifier" arguments:resultDic];
 }
 
 - (void)xgPushDidUpdatedBindedIdentifiers:(NSArray<NSString *> *)identifiers bindType:(XGPushTokenBindType)type error:(NSError *)error {
-    NSString *argumentDescribe = type == XGPushTokenBindTypeAccount ? @"设置账号" : @"更新标签";
-    NSString *resultStr = error == nil ? @"成功" : [NSString stringWithFormat:@"失败，error:%@", error.description];
-    [_channel invokeMethod:@"xgPushDidUpdatedBindedIdentifier" arguments:[NSString stringWithFormat:@"%@%@", argumentDescribe, resultStr]];
+    NSString *msg = error == nil ? @"updatedBindedIdentifiers successful" : [NSString stringWithFormat:@"updatedBindedIdentifiers fail，error:%@", error.description];
+    NSNumber *code = error == nil ? @(0) : @(error.code);
+    NSString *typeStr = type == XGPushTokenBindTypeAccount ? @"account" : @"tag";
+    NSDictionary *resultDic = @{@"code":code, @"type":typeStr, @"msg":msg};
+    [_channel invokeMethod:@"xgPushDidUpdatedBindedIdentifier" arguments:resultDic];
 }
 
 - (void)xgPushDidClearAllIdentifiers:(XGPushTokenBindType)type error:(NSError *)error {
-    NSString *argumentDescribe = type == XGPushTokenBindTypeAccount ? @"清除账号" : @"清除标签";
-    NSString *resultStr = error == nil ? @"成功" : [NSString stringWithFormat:@"失败，error:%@", error.description];
-    [_channel invokeMethod:@"xgPushDidClearAllIdentifiers" arguments:[NSString stringWithFormat:@"%@%@", argumentDescribe, resultStr]];
+    NSString *msg = error == nil ? @"clearAllIdentifiers successful" : [NSString stringWithFormat:@"clearAllIdentifiers fail，error:%@", error.description];
+    NSNumber *code = error == nil ? @(0) : @(error.code);
+    NSString *typeStr = type == XGPushTokenBindTypeAccount ? @"account" : @"tag";
+    NSDictionary *resultDic = @{@"code":code, @"type":typeStr, @"msg":msg};
+    [_channel invokeMethod:@"xgPushDidClearAllIdentifiers" arguments:resultDic];
 }
 #pragma clang diagnostic pop
 

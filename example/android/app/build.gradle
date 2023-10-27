@@ -26,40 +26,40 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion flutter.compileSdkVersion
+    ndkVersion flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
-    lintOptions {
-        disable 'InvalidPackage'
-    }
-
     defaultConfig {
-        applicationId "com.xg.tpns_flutter_plugin_example"
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        applicationId "com.tencent.example"
+        // You can update the following values to match your application needs.
+        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
         minSdkVersion 17
-        targetSdkVersion 28
+        targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        ndk {
-            //选择要添加的对应.so 库。
-            abiFilters 'armeabi', 'armeabi-v7a', 'x86', 'x86_64', 'mips', 'mips64', 'arm64-v8a'
-        }
-//        manifestPlaceholders = [
-//                XG_ACCESS_ID : "替换自己的ACCESS_ID",  //信鸽官网注册所得ACCESS_ID
-//                XG_ACCESS_KEY : "替换自己的ACCESS_KEY", //信鸽官网注册所得ACCESS_KEY
-//        ]
         manifestPlaceholders = [
-                XG_ACCESS_ID : "1500004343",  //信鸽官网注册所得ACCESS_ID
-                XG_ACCESS_KEY: "ANCVHDQ0DO3E", //信鸽官网注册所得ACCESS_KEY
+            XG_ACCESS_ID : "1500004343",
+            XG_ACCESS_KEY : "ANCVHDQ0DO3E",
         ]
     }
 
     buildTypes {
         release {
-
+            // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
@@ -72,7 +72,4 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }
