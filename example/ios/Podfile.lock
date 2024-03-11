@@ -10,7 +10,7 @@ DEPENDENCIES:
   - tpns_flutter_plugin (from `.symlinks/plugins/tpns_flutter_plugin/ios`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - TPNS-iOS
 
 EXTERNAL SOURCES:
@@ -20,10 +20,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/tpns_flutter_plugin/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 405776dd0763d7e32a8f989d4e271ca1317d080c
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   TPNS-iOS: eaf32b052bba0144aa2aa68dab85b87f6ad72a12
   tpns_flutter_plugin: 6a9a482a718a72318658ba70b3d895c4d5b350e5
 
-PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
+PODFILE CHECKSUM: c4c93c5f6502fe2754f48404d3594bf779584011
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.15.2

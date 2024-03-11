@@ -194,7 +194,7 @@ class HomeTestBodyState extends State<HomeTestBody> {
 
   Future<void> getXgSdkVersion() async {
     try {
-      String sdkVersion = await XgFlutterPlugin.xgSdkVersion;
+      String? sdkVersion = await XgFlutterPlugin.xgSdkVersion;
       print('xgSdkVersion: $sdkVersion');
       Alert(context: context, title: sdkVersion, desc: "").show();
     } catch (e) {
@@ -204,7 +204,7 @@ class HomeTestBodyState extends State<HomeTestBody> {
 
   Future<void> getXgToken() async {
     try {
-      String xgToken = await XgFlutterPlugin.xgToken;
+      String? xgToken = await XgFlutterPlugin.xgToken;
       print('xgtoken: $xgToken');
       Alert(context: context, title: xgToken, desc: "").show();
     } catch (e) {
