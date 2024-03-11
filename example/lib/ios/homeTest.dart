@@ -196,7 +196,17 @@ class HomeTestBodyState extends State<HomeTestBody> {
     try {
       String? sdkVersion = await XgFlutterPlugin.xgSdkVersion;
       print('xgSdkVersion: $sdkVersion');
-      Alert(context: context, title: sdkVersion, desc: "").show();
+      Alert(context: context, title: sdkVersion, desc: "", buttons: [
+          DialogButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text(
+              "确认",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          )
+        ]).show();
     } catch (e) {
       print(e.toString());
     }
@@ -206,7 +216,17 @@ class HomeTestBodyState extends State<HomeTestBody> {
     try {
       String? xgToken = await XgFlutterPlugin.xgToken;
       print('xgtoken: $xgToken');
-      Alert(context: context, title: xgToken, desc: "").show();
+      Alert(context: context, title: xgToken, desc: "", buttons: [
+          DialogButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text(
+              "确认",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          )
+        ]).show();
     } catch (e) {
       print(e.toString());
     }
