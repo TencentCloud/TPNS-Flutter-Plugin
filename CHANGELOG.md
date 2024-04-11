@@ -1,3 +1,7 @@
+## V1.3.0
+* iOS support privacyInfo
+* use TPNS iOS SDK 1.4.0.1
+
 ## V1.2.9
 * demo support null safety
 * use TPNS iOS SDK 1.4.0.0
