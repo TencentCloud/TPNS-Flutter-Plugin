@@ -226,7 +226,7 @@ dependencies {
 ```
 
 ### 7. 荣耀通道接入，可参考移动推送 TPNS  [荣耀通道接入](https://cloud.tencent.com/document/product/548/74465)
-#### 4.1 在 App 模块下的 build.gradle 文件内
+#### 7.1 在 App 模块下的 build.gradle 文件内
 
 ```
       android: {
@@ -244,14 +244,14 @@ dependencies {
       /// 引入 vivo 推送的依赖
       implementation 'com.tencent.tpns:honor:[VERSION]-release'  // 荣耀 推送 [VERSION] 为当前SDK版本号,版本号可在SDK下载页查看
 ```
-#### 4.2 启用 荣耀 推送
+#### 7.2 启用 荣耀 推送
 
 ```dart
       /// 打开第三方推送
       XgFlutterPlugin.xgApi.enableOtherPush();
       XgFlutterPlugin.xgApi.regPush();
 ```
-#### 4.3代码混淆
+#### 7.3代码混淆
 
 ```
 	-ignorewarnings
