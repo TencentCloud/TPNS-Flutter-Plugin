@@ -15,7 +15,7 @@ buildscript {
     }
     dependencies {
         // 其他classpath配置
-        classpath 'com.huawei.agconnect:agcp:1.3.1.300'     // 华为推送 gradle 插件依赖
+        classpath 'com.huawei.agconnect:agcp:1.9.1.301'     // 华为推送 gradle 插件依赖
     }
 }
 ```
@@ -49,7 +49,7 @@ dependencies {
     implementation 'com.tencent.tpns:huawei:[VERSION]-release'      
     
     // HMS Core Push 模块依赖包
-    implementation 'com.huawei.hms:push:5.0.2.300'       
+    implementation 'com.huawei.hms:push:6.12.0.300'        
 }
 ```
 
@@ -223,6 +223,48 @@ dependencies {
       /// 打开第三方推送
       XgFlutterPlugin.xgApi.enableOtherPush();
       XgFlutterPlugin.xgApi.regPush();
+```
+
+### 7. 荣耀通道接入，可参考移动推送 TPNS  [荣耀通道接入](https://cloud.tencent.com/document/product/548/74465)
+#### 4.1 在 App 模块下的 build.gradle 文件内
+
+```
+      android: {
+        defaultConfig {
+          manifestPlaceholders = [
+            ....
+            HONOR_APPID  : "xxxx"
+            .....
+          ]
+        }
+      }
+```
+
+```
+      /// 引入 vivo 推送的依赖
+      implementation 'com.tencent.tpns:honor:[VERSION]-release'  // 荣耀 推送 [VERSION] 为当前SDK版本号,版本号可在SDK下载页查看
+```
+#### 4.2 启用 荣耀 推送
+
+```dart
+      /// 打开第三方推送
+      XgFlutterPlugin.xgApi.enableOtherPush();
+      XgFlutterPlugin.xgApi.regPush();
+```
+#### 4.3代码混淆
+
+```
+	-ignorewarnings
+	-keepattributes *Annotation*
+	-keepattributes Exceptions
+	-keepattributes InnerClasses
+	-keepattributes Signature
+	-keepattributes SourceFile,LineNumberTable
+
+
+	-keep class com.hihonor.push.framework.aidl.**{*;}
+	-keep class com.hihonor.push.sdk.**{*;}
+
 ```
 
 ## 厂商通道注册失败排查指南

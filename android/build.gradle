@@ -27,7 +27,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 31
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -44,6 +44,6 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //添加以下依赖
-    implementation 'com.tencent.tpns:tpns:1.4.3.1-release'
+    implementation 'com.tencent.tpns:tpns:1.4.3.8-release'
     compileOnly files('libs/flutter.jar')
 }
