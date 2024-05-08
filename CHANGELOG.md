@@ -1,3 +1,6 @@
+## V1.3.1
+* use Android SDK 1.4.3.8
+
 ## V1.3.0
 * iOS support privacyInfo
 * use TPNS iOS SDK 1.4.0.1
