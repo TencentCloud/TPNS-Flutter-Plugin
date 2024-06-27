@@ -1,3 +1,6 @@
+## V1.3.2
+* build.gradle add namespace
+
 ## V1.3.1
 * use Android SDK 1.4.3.8
 
