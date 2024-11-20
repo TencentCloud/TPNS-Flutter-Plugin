@@ -1,3 +1,6 @@
+## V1.3.3
+* use TPNS iOS SDK 1.4.0.4
+
 ## V1.3.2
 * build.gradle add namespace
 

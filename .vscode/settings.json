@@ -1,0 +1,23 @@
+{
+    "preCI.localCodeCheck.filter.whitePath": "",
+    "preCI.localCodeCheck.filter.skipPath": ".*/\\.codecc/.*,.*/\\.git,.*/\\.git/.*,.*/\\.svn/.*",
+    "preCI.localCodeCheck.preCommit": "none",
+    "preCI.localCodeCheck.prePush": "none",
+    "preCI.pipeline.yamlFilePath": "build.yml",
+    "preCI.localCodeCheck.toolType": "binary",
+    "preCI.localCodeCheck.checkerSet.JAVA": [
+        "standard_java"
+    ],
+    "preCI.localCodeCheck.checkerSet.OC/OC++": [
+        "bkcheck_oc_rule"
+    ],
+    "preCI.localCodeCheck.checkerSet.Other": [
+        "standard_scc"
+    ],
+    "preCI.localCodeCheck.checkerSet.C/C++": [
+        "standard_cpp"
+    ],
+    "preCI.localCodeCheck.checkerSet.Kotlin": [
+        "standard_kotlin"
+    ]
+}

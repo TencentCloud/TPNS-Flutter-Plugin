@@ -7,3 +7,6 @@ xcuserdata/
 .editorconfig
 .idea
 build/
+
+### PreCI ###
+.codecc

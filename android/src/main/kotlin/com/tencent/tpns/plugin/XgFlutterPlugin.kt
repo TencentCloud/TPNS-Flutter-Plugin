@@ -402,8 +402,8 @@ public class XgFlutterPlugin : FlutterPlugin, MethodCallHandler {
      * 当 App 完全卸载重装了 Token 会发生变化。不同 App 之间的 Token 不一样。
      */
     fun xgToken(call: MethodCall?, result: MethodChannel.Result) {
-        val token: String = XGPushConfig.getToken(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext)
-        Log.i(TAG, "调用信鸽SDK-->getToken()----token=${token}")
+        val token: String = XGPushConfig.(if (!isPluginBindingValid()) registrar.context() else mPluginBinding.applicationContext)
+        Log.i(TAG, "调用信鸽SDK-->()----token=${token}")
         result.success(token)
     }
 
