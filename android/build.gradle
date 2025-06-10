@@ -27,7 +27,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    namespace "com.tencent.tpns"
+    namespace "com.tencent.tpns.plugin"
     compileSdkVersion 31
 
     sourceSets {
